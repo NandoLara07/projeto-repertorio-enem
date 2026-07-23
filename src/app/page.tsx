@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { Textarea } from "@/components/ui/textarea";
 import Header from "@/components/common/header";
 import Typewriter from "typewriter-effect";
+import { asset } from "@/lib/paths";
 
 export default function Home() {
   const router = useRouter();
@@ -27,10 +28,16 @@ export default function Home() {
             playsInline
             disablePictureInPicture
             preload="auto"
-            poster="/background/background-poster.png"
+            poster={asset("/background/background-poster.png")}
           >
-            <source src="/background/background-loop.webm" type="video/webm" />
-            <source src="/background/background-loop.mp4" type="video/mp4" />
+            <source
+              src={asset("/background/background-loop.webm")}
+              type="video/webm"
+            />
+            <source
+              src={asset("/background/background-loop.mp4")}
+              type="video/mp4"
+            />
           </video>
         </div>
       </ViewTransition>
