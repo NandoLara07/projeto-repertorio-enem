@@ -1,12 +1,15 @@
 "use client";
 
+import { useState } from "react";
 import { ViewTransition } from "react";
 import { useRouter } from "next/navigation";
 import { Textarea } from "@/components/ui/textarea";
 import Header from "@/components/common/header";
+import Typewriter from "typewriter-effect";
 
 export default function Home() {
   const router = useRouter();
+  const [value, setValue] = useState("");
 
   const goToSearch = () => {
     router.push("/busca", { transitionTypes: ["nav-forward"] });
@@ -51,10 +54,31 @@ export default function Home() {
           </ViewTransition>
 
           <ViewTransition name="search-textarea">
-            <div className="w-full max-w-2xl">
+            <div className="w-full max-w-2xl relative">
+              {!value && (
+                <span className="absolute left-3 top-3 pointer-events-none text-gray-500">
+                  <Typewriter
+                    component="div"
+                    options={{
+                      strings: [
+                        "Digite um tema de redação...",
+                        "Ex: Desafios para a valorização da herança africana no Brasil",
+                        "Ou informe algumas palavras-chave...",
+                      ],
+                      autoStart: true,
+                      loop: true,
+                      deleteSpeed: 15,
+                      delay: 100,
+                    }}
+                  />
+                </span>
+              )}
+
               <Textarea
                 onFocus={goToSearch}
-                placeholder="Digite o tema..."
+                value={value}
+                onChange={(event) => setValue(event.target.value)}
+                // placeholder="Digite o tema..."
                 className="min-h-20 text-base resize-none rounded-xl"
               />
             </div>

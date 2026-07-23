@@ -40,7 +40,7 @@ export default function Busca() {
                     handleSubmit();
                   }
                 }}
-                placeholder="Digite o tema..."
+                placeholder="Informe o tema..."
                 className="min-h-40 text-base resize-none rounded-xl pb-14"
               />
               <button
