@@ -51,7 +51,7 @@
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(5px);
+    /* transform: translateY(5px); */
   }
 
   to {
@@ -62,6 +62,36 @@
 
 .fade-in {
   animation: fadeIn 0.6s ease-out forwards;
+}
+
+::view-transition-group(site-header) {
+  animation: none;
+  z-index: 100;
+}
+::view-transition-old(site-header) {
+  display: none;
+}
+::view-transition-new(site-header) {
+  animation: none;
+}
+
+@keyframes fadeOutVT {
+  to {
+    opacity: 0;
+  }
+}
+
+::view-transition-old(.fade-out) {
+  animation: 180ms ease-out both fadeOutVT;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
 }
 
 :root {
