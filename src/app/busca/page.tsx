@@ -42,7 +42,7 @@ export default function Busca() {
                   }
                 }}
                 placeholder="Informe o tema..."
-                className="min-h-40 text-base resize-none rounded-xl pb-14 shadow-md"
+                className="min-h-30 text-base resize-none rounded-xl pb-14 shadow-md"
               />
               <button
                 type="button"
@@ -52,6 +52,10 @@ export default function Busca() {
               >
                 <ArrowUp className="h-5 w-5" />
               </button>
+            </div>
+            <div className="bg-accent/50 rounded-xl p-4 mt-5 text-sm text-accent-foreground max-w-150">
+              <strong>Dica:</strong> Quanto mais completo o tema, melhores serão
+              as recomendações. Tente incluir palavras-chave específicas.
             </div>
           </ViewTransition>
         </div>
