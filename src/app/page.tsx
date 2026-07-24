@@ -48,22 +48,24 @@ export default function Home() {
         <div className="flex h-full flex-col items-center justify-center gap-4 px-4 text-center">
           <ViewTransition exit="fade-out" default="none">
             <div className="max-w-2xl text-center space-y-8 fade-in">
-              <h1 className="text-4xl md:text-5xl font-extrabold text-foreground leading-tight tracking-tight">
+              <h1 className="text-6xl lg:text-7xl font-extrabold text-foreground leading-tight tracking-tight">
                 Repertór.<span className="text-primary">io</span>
               </h1>
             </div>
           </ViewTransition>
 
           <ViewTransition exit="fade-out" default="none">
-            <p className="text-lg max-w-lg mx-auto leading-relaxed fade-in">
-              Encontre o repertório ideal para sua redação do ENEM
-            </p>
+            <div>
+              <p className="text-xl md:text-lg max-w-lg mx-auto leading-relaxed fade-in">
+                Encontre o repertório ideal para sua redação do ENEM
+              </p>
+            </div>
           </ViewTransition>
 
           <ViewTransition name="search-textarea">
             <div className="w-full max-w-2xl relative">
               {!value && (
-                <span className="absolute left-3 top-3 pointer-events-none text-gray-500">
+                <span className="text-2xl md:text-base absolute left-3 top-3 pointer-events-none text-gray-500">
                   <Typewriter
                     component="div"
                     options={{
@@ -86,7 +88,7 @@ export default function Home() {
                 value={value}
                 onChange={(event) => setValue(event.target.value)}
                 // placeholder="Digite o tema..."
-                className="min-h-20 text-base resize-none rounded-xl"
+                className="min-h-40 text-lg md:min-h-20 md:text-base resize-none rounded-xl shadow-lg"
               />
             </div>
           </ViewTransition>
