@@ -21,10 +21,10 @@ export default function Busca() {
 
         <div className="flex h-full flex-col items-center justify-center gap-4 px-4 text-center">
           <div className="text-center space-y-2 fade-in">
-            <h1 className="text-5xl md:text-3xl lg:text-3xl font-bold text-foreground">
+            <h1 className="text-3xl font-bold text-foreground">
               Qual é o tema da redação?
             </h1>
-            <p className="text-2xl md:text-2xl lg:text-base text-muted-foreground">
+            <p className="text-base text-muted-foreground">
               Digite o tema e encontraremos os melhores repertórios
               socioculturais.
             </p>
@@ -42,15 +42,15 @@ export default function Busca() {
                   }
                 }}
                 placeholder="Informe o tema..."
-                className="min-h-70 md:min-h-55 lg:min-h-40 text-2xl lg:text-base resize-none rounded-xl pb-14 shadow-md"
+                className="min-h-40 text-base resize-none rounded-xl pb-14 shadow-md"
               />
               <button
                 type="button"
                 disabled={!theme.trim()}
                 onClick={handleSubmit}
-                className="absolute bottom-3 right-3 flex h-15 w-15 lg:h-9 lg:w-9 items-center justify-center rounded-full bg-primary text-primary-foreground transition-opacity hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-50"
+                className="absolute bottom-3 right-3 flex h-9 w-9 items-center justify-center rounded-full bg-primary text-primary-foreground transition-opacity hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-50"
               >
-                <ArrowUp className="h-8 w-8 lg:h-5 lg:w-5" />
+                <ArrowUp className="h-5 w-5" />
               </button>
             </div>
           </ViewTransition>
