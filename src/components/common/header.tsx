@@ -1,18 +1,26 @@
 import Link from "next/link";
+import Image from "next/image";
+import { asset } from "@/lib/paths";
 
 export const Header = () => {
   return (
     <header
       style={{ viewTransitionName: "site-header" }}
-      className="fixed top-0 left-0 right-0 z-50 flex h-16 w-full items-center justify-between border-b border-border bg-background px-4"
+      className="fixed top-0 left-0 right-0 z-50 flex h-[9dvh] w-full items-center justify-between border-b border-border bg-background px-4"
     >
       <Link
         href="/"
-        className="flex items-center gap-2 hover:opacity-80 transition-opacity"
+        className="flex h-full items-center gap-2 py-2 hover:opacity-80 transition-opacity"
       >
-        <h1 className="font-extrabold text-foreground leading-tight tracking-tight">
-          Repertór.<span className="text-primary">io</span>
-        </h1>
+        <div className="relative aspect-square h-full">
+          <Image
+            src={asset("/temp_logo.svg")}
+            alt="Logo"
+            fill
+            className="object-contain"
+            priority
+          />
+        </div>
       </Link>
     </header>
   );
