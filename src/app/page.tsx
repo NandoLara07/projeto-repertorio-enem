@@ -63,7 +63,7 @@ export default function Home() {
           </ViewTransition>
 
           <ViewTransition name="search-textarea">
-            <div className="w-full max-w-2xl relative">
+            <div className="w-full max-w-2xl relative text-left">
               {!value && (
                 <span className="absolute left-3 top-3 pointer-events-none text-gray-500">
                   <Typewriter

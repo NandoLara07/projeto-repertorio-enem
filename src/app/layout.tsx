@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { asset } from "@/lib/paths";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -15,6 +16,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Repertór.io",
   description: "Não sabe qual repertório usar na redação? Nós te ajudamos!",
+  icons: {
+    icon: asset("/icon/icon.ico"),
+  },
 };
 
 export default function RootLayout({
