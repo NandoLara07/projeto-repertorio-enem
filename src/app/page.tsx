@@ -7,20 +7,37 @@ import { Textarea } from "@/components/ui/textarea";
 import Header from "@/components/common/header";
 import Typewriter from "typewriter-effect";
 import { asset } from "@/lib/paths";
+import { useTheme } from "next-themes";
 
 export default function Home() {
   const router = useRouter();
   const [value, setValue] = useState("");
+  const { resolvedTheme } = useTheme();
 
   const goToSearch = () => {
     router.push("/busca", { transitionTypes: ["nav-forward"] });
   };
+
+  const isDark = resolvedTheme === "dark";
+
+  const backgroundWebm = isDark
+    ? asset("/background/dark/background-dark.webm")
+    : asset("/background/light/background-light.webm");
+
+  const backgroundMp4 = isDark
+    ? asset("/background/dark/background-dark.mp4")
+    : asset("/background/light/background-light.mp4");
+
+  const backgroundPoster = isDark
+    ? asset("/background/dark/background-dark-poster.png")
+    : asset("/background/light/background-light-poster.png");
 
   return (
     <div className="fixed inset-0 overflow-hidden">
       <ViewTransition exit="fade-out" default="none">
         <div className="absolute inset-0 -z-10 overflow-hidden">
           <video
+            key={isDark ? "dark" : "light"}
             className="h-full w-full object-cover object-bottom"
             autoPlay
             loop
@@ -28,16 +45,10 @@ export default function Home() {
             playsInline
             disablePictureInPicture
             preload="auto"
-            poster={asset("/background/background-poster.png")}
+            poster={backgroundPoster}
           >
-            <source
-              src={asset("/background/background-loop.webm")}
-              type="video/webm"
-            />
-            <source
-              src={asset("/background/background-loop.mp4")}
-              type="video/mp4"
-            />
+            <source src={backgroundWebm} type="video/webm" />
+            <source src={backgroundMp4} type="video/mp4" />
           </video>
         </div>
       </ViewTransition>

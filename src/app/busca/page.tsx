@@ -8,7 +8,7 @@ import Header from "@/components/common/header";
 import { asset } from "@/lib/paths";
 
 export default function Busca() {
-  const [theme, setTheme] = useState("");
+  const [Essaytheme, setEssayTheme] = useState("");
 
   const handleSubmit = () => {
     window.location.href = asset("/repertorios");
@@ -33,10 +33,10 @@ export default function Busca() {
             <div className="relative w-full max-w-2xl">
               <Textarea
                 autoFocus
-                value={theme}
-                onChange={(e) => setTheme(e.target.value)}
+                value={Essaytheme}
+                onChange={(e) => setEssayTheme(e.target.value)}
                 onKeyDown={(e) => {
-                  if (e.key === "Enter" && !e.shiftKey && theme.trim()) {
+                  if (e.key === "Enter" && !e.shiftKey && Essaytheme.trim()) {
                     e.preventDefault();
                     handleSubmit();
                   }
@@ -46,7 +46,7 @@ export default function Busca() {
               />
               <button
                 type="button"
-                disabled={!theme.trim()}
+                disabled={!Essaytheme.trim()}
                 onClick={handleSubmit}
                 className="absolute bottom-3 right-3 flex h-9 w-9 items-center justify-center rounded-full bg-primary text-primary-foreground transition-opacity hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-50"
               >

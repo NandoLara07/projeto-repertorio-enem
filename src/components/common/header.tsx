@@ -1,6 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
-import { asset } from "@/lib/paths";
+import ThemeSwitcher from "../ui/theme-switcher";
 
 export const Header = () => {
   return (
@@ -12,16 +11,21 @@ export const Header = () => {
         href="/"
         className="flex h-full items-center gap-2 py-2 hover:opacity-80 transition-opacity"
       >
-        <div className="relative aspect-square h-full">
-          <Image
-            src={asset("/temp_logo.svg")}
-            alt="Logo"
-            fill
-            className="object-contain"
-            priority
+        <svg
+          viewBox="0 0 320 360"
+          role="img"
+          aria-label="Logo R Repertór.io"
+          className="h-full aspect-square text-[#101D17] dark:text-white"
+        >
+          <path
+            fill="currentColor"
+            d="M72 42h102c53 0 96 39 96 91 0 39-24 72-59 85l76 100h-66l-83-111h33c30 0 53-21 53-51 0-29-23-50-53-50h-43v101H72V42z"
           />
-        </div>
+          <circle cx="92" cy="266" r="30" fill="#2F8F46" />
+        </svg>
       </Link>
+
+      <ThemeSwitcher />
     </header>
   );
 };
