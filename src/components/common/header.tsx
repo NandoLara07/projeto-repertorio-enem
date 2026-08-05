@@ -14,7 +14,7 @@ export const Header = () => {
         <svg
           viewBox="0 0 320 360"
           role="img"
-          aria-label="Logo R Repertór.io"
+          aria-label="Logo Repertór.io"
           className="h-full aspect-square text-[#101D17] dark:text-white"
         >
           <path

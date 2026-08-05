@@ -81,8 +81,10 @@ export default function Home() {
                     component="div"
                     options={{
                       strings: [
-                        "Digite um tema de redação...",
+                        "Digite um assunto, tema ou proposta de redação...",
                         "Ex: Desafios para a valorização da herança africana no Brasil",
+                        "Ex: Educação",
+                        "Ex: Violência",
                         "Ou informe algumas palavras-chave...",
                       ],
                       autoStart: true,

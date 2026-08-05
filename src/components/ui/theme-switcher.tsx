@@ -11,9 +11,7 @@ export default function ThemeSwitcher() {
     <Button
       variant="ghost"
       size="icon"
-      aria-label={
-        theme === "light" ? "Ativar tema escuro" : "Ativar tema claro"
-      }
+      aria-label="Trocar tema do site"
       onClick={() => setTheme(theme === "light" ? "dark" : "light")}
       className="rounded-full"
     >
