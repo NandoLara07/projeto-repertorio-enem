@@ -8,17 +8,19 @@ import Header from "@/components/common/header";
 import Typewriter from "typewriter-effect";
 import { asset } from "@/lib/paths";
 import { useTheme } from "next-themes";
+import { useIsClient } from "@/hooks/use-is-client";
 
 export default function Home() {
   const router = useRouter();
   const [value, setValue] = useState("");
   const { resolvedTheme } = useTheme();
+  const isClient = useIsClient();
 
   const goToSearch = () => {
     router.push("/busca", { transitionTypes: ["nav-forward"] });
   };
 
-  const isDark = resolvedTheme === "dark";
+  const isDark = isClient && resolvedTheme === "dark";
 
   const backgroundWebm = isDark
     ? asset("/background/dark/background-dark.webm")
