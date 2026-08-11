@@ -11,7 +11,9 @@ export default function Busca() {
   const [EssayTheme, setEssayTheme] = useState("");
 
   const handleSubmit = () => {
-    window.location.href = asset("/repertorios");
+    window.location.href = asset(
+      `/repertorios?tema=${encodeURIComponent(EssayTheme.trim())}`,
+    );
   };
 
   return (
