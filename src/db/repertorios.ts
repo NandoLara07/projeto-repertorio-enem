@@ -39,7 +39,7 @@ export const repertoriosData: Repertorio[] = [
   {
     id: "002",
     title: "Revolução Industrial",
-    type: "Evento Histórico",
+    type: "evento histórico",
     category: "Trabalho e Tecnologia",
     specificThemes: [
       "Transformação do trabalho",

@@ -2,7 +2,18 @@ export interface Repertorio {
   id: string;
   title: string;
 
-  type: string; // lei, filme, filosofo etc
+  type:
+    | "lei"
+    | "filme"
+    | "documentario"
+    | "serie"
+    | "evento histórico"
+    | "dado"
+    | "livro"
+    | "conceito"
+    | "movimento"
+    | "citação"
+    | "pessoa";
 
   category: string; // Violência, Infância, Direitos, Cidadania, Educação
 
