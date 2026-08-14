@@ -1,6 +1,41 @@
 import { Repertorio } from "@/types/repertorio";
 
-export const repertoriosData: Repertorio[] = [
+export const RepertoriosData: Repertorio[] = [
+  {
+    id: "000",
+    title: "Título teste de repertório",
+
+    type: "filme",
+
+    category: "Violência / Direitos Humanos",
+
+    specificThemes: ["Violência contra a mulher", "Desigualdade de gênero"],
+    keywords: [
+      "mulher",
+      "violência",
+      "proteção",
+      "lei",
+      "gênero",
+      "doméstica",
+      "maria",
+      "penha",
+    ],
+
+    explanation:
+      "Lorem ipsum dolor sit amet consectetur adipiscing elit. Consectetur adipiscing elit quisque faucibus ex sapien vitae. Ex sapien vitae pellentesque sem placerat in id.",
+    essayUsage:
+      "Pode sustentar argumentos sobre violência de gênero, proteção institucional e políticas públicas voltadas para mulheres.",
+
+    usageTemplate:
+      "A Lei Maria da Penha (Lei 11.340/2006), criada para combater a violência doméstica e familiar contra a mulher, representa um marco na luta por direitos e proteção feminina no Brasil. Entretanto, [problema] ainda persiste na sociedade brasileira, evidenciando a insuficiência das políticas públicas de enfrentamento.",
+
+    usageTips:
+      "Substitua [problema] pelo eixo temático da redação. Funciona bem para temas de violência de gênero, proteção da mulher e falhas institucionais.",
+
+    usagePlaceholders: ["[problema]", "[dado/exemplo]"],
+
+    bestFor: "introdução",
+  },
   {
     id: "001",
     title: "Lei Maria da Penha (Lei 11.340/2006)",
@@ -39,7 +74,7 @@ export const repertoriosData: Repertorio[] = [
   {
     id: "002",
     title: "Revolução Industrial",
-    type: "evento histórico",
+    type: "evento",
     category: "Trabalho e Tecnologia",
     specificThemes: [
       "Transformação do trabalho",

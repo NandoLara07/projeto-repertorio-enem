@@ -7,7 +7,7 @@ export interface Repertorio {
     | "filme"
     | "documentario"
     | "serie"
-    | "evento histórico"
+    | "evento"
     | "dado"
     | "livro"
     | "conceito"
