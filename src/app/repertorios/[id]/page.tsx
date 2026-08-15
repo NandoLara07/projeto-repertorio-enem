@@ -5,7 +5,13 @@ import BackButton from "@/components/common/back-button";
 import ExpandableText from "@/components/common/expandable-text";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { FileText, MessageSquareQuote, Tag, Target } from "lucide-react";
+import {
+  FileText,
+  Lightbulb,
+  MessageSquareQuote,
+  Tag,
+  Target,
+} from "lucide-react";
 
 export async function generateStaticParams() {
   return RepertoriosData.map((r) => ({ id: r.id }));
@@ -137,9 +143,12 @@ export default async function RepertorioDetalhe({
                   )}
 
                 {repertorio.usageTips && (
-                  <p className="text-sm text-muted-foreground leading-relaxed p-3 bg-accent/50 rounded-lg">
-                    {repertorio.usageTips}
-                  </p>
+                  <div className="flex gap-2 p-3 bg-accent/50 rounded-lg">
+                    <Lightbulb className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      {repertorio.usageTips}
+                    </p>
+                  </div>
                 )}
               </CardContent>
             </Card>
