@@ -23,8 +23,7 @@ function RepertoriosContent() {
 
 export default function Repertorios() {
   // mudar dps quando tiver o mecanismo de busca funcionando
-  // const recommendedIds = RepertoriosData.map((r) => r.id);
-  const recommendedIds = ["000"];
+  const recommendedIds = RepertoriosData.map((r) => r.id);
 
   return (
     <div className="min-h-screen flex flex-col">

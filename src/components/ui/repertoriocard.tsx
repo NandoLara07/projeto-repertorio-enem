@@ -15,8 +15,9 @@ import {
   Target,
 } from "lucide-react";
 import { Repertorio } from "@/types/repertorio";
+import { asset } from "@/lib/paths";
 
-const typeLabels: Record<Repertorio["type"], string> = {
+export const typeLabels: Record<Repertorio["type"], string> = {
   lei: "Lei",
   filme: "Filme",
   documentario: "Documentário",
@@ -58,7 +59,9 @@ export const RepertorioCard = ({
       className="cursor-pointer hover:shadow-lg transition-all duration-400 hover:-translate-y-1 card-in border-border/60"
       style={{ animationDelay: `${index * 80}ms` }}
       onClick={() => {
-        console.log(`Clicked on repertorio: ${repertorio.title}`);
+        window.location.href = asset(
+          `/repertorios/${encodeURIComponent(repertorio.id)}`,
+        );
       }}
     >
       <CardHeader className="pb-3">
