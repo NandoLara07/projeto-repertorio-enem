@@ -5,13 +5,8 @@ import BackButton from "@/components/common/back-button";
 import ExpandableText from "@/components/common/expandable-text";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import {
-  FileText,
-  Lightbulb,
-  MessageSquareQuote,
-  Tag,
-  Target,
-} from "lucide-react";
+import UsageExempleCard from "@/components/common/usage-exemple-card";
+import { FileText, MessageSquareQuote, Tag, Target } from "lucide-react";
 
 export async function generateStaticParams() {
   return RepertoriosData.map((r) => ({ id: r.id }));
@@ -98,63 +93,10 @@ export default async function RepertorioDetalhe({
           </Card>
 
           {repertorio.usageTemplate && (
-            <Card className="border-2 border-primary/30 bg-primary/5">
-              <CardContent className="space-y-4">
-                <h2 className="text-primary font-bold text-lg">
-                  Modelo de uso
-                </h2>
-
-                <div className="bg-background rounded-lg p-4 border border-border/60">
-                  <p className="text-foreground leading-relaxed text-sm whitespace-pre-line">
-                    {repertorio.usageTemplate
-                      .split(/(\[[^\]]+\])/)
-                      .map((part, i) =>
-                        /^\[.+\]$/.test(part) ? (
-                          <span
-                            key={i}
-                            className="text-primary font-semibold bg-primary/10 rounded px-1"
-                          >
-                            {part}
-                          </span>
-                        ) : (
-                          <span key={i}>{part}</span>
-                        ),
-                      )}
-                  </p>
-                </div>
-
-                {repertorio.usagePlaceholders &&
-                  repertorio.usagePlaceholders.length > 0 && (
-                    <div className="space-y-2">
-                      <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-                        Campos para adaptar:
-                      </p>
-                      <div className="flex flex-wrap gap-1.5">
-                        {repertorio.usagePlaceholders.map((ph) => (
-                          <span
-                            key={ph}
-                            className="text-xs bg-primary/10 text-primary px-2.5 py-1 rounded-full font-medium"
-                          >
-                            {ph}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                {repertorio.usageTips && (
-                  <div className="flex gap-2 p-3 bg-accent/50 rounded-lg">
-                    <Lightbulb className="h-4 w-4 text-primary shrink-0 mt-0.5" />
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      {repertorio.usageTips}
-                    </p>
-                  </div>
-                )}
-              </CardContent>
-            </Card>
+            <UsageExempleCard repertorio={repertorio} />
           )}
 
-          {repertorio.usageExample && repertorio.usageExample.length > 0 && (
+          {/* {repertorio.usageExample && repertorio.usageExample.length > 0 && (
             <Card>
               <CardContent className="pt-6 space-y-2">
                 <h2 className="text-primary font-semibold">
@@ -172,7 +114,7 @@ export default async function RepertorioDetalhe({
                 )}
               </CardContent>
             </Card>
-          )}
+          )} */}
 
           <div className="grid md:grid-cols-2 gap-6">
             <div className="space-y-3">

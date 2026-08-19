@@ -77,9 +77,7 @@ export const RepertorioCard = ({
           <Badge variant="outline" className="text-xs font-medium">
             {typeLabels[repertorio.type]}
           </Badge>
-          <Badge variant="secondary" className="text-xs font-medium">
-            {repertorio.category}
-          </Badge>
+          <Badge className="text-xs font-medium">{repertorio.category}</Badge>
         </div>
       </CardHeader>
       <CardContent>
