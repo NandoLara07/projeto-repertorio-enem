@@ -3,6 +3,7 @@ import { Card, CardContent } from "../ui/card";
 import {
   Carousel,
   CarouselContent,
+  CarouselDots,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
@@ -25,6 +26,7 @@ export default function UsageExempleCard({
     <Card className="border-2 border-primary/30 bg-primary/5 py-4 px-2">
       <CardContent className="space-y-4">
         <Carousel>
+          <CarouselDots className="mb-3" />
           <div className="flex items-center gap-2">
             {repertorio.usageExample && (
               <CarouselPrevious className="static hidden md:inline-flex" />

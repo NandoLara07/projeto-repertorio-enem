@@ -24,6 +24,7 @@ type CarouselProps = {
 type CarouselContextProps = {
   carouselRef: ReturnType<typeof useEmblaCarousel>[0]
   api: ReturnType<typeof useEmblaCarousel>[1]
+  subscribe: (onStoreChange: () => void) => () => void
   scrollPrev: () => void
   scrollNext: () => void
   canScrollPrev: boolean
@@ -114,6 +115,7 @@ function Carousel({
       value={{
         carouselRef,
         api: api,
+        subscribe,
         opts,
         orientation:
           orientation || (opts?.axis === "y" ? "vertical" : "horizontal"),
@@ -236,6 +238,47 @@ function CarouselNext({
   )
 }
 
+function CarouselDots({ className, ...props }: React.ComponentProps<"div">) {
+  const { api, subscribe } = useCarousel()
+
+  const scrollSnapCount = React.useSyncExternalStore(
+    subscribe,
+    React.useCallback(() => api?.scrollSnapList().length ?? 0, [api]),
+    () => 0
+  )
+  const selectedIndex = React.useSyncExternalStore(
+    subscribe,
+    React.useCallback(() => api?.selectedScrollSnap() ?? 0, [api]),
+    () => 0
+  )
+
+  if (scrollSnapCount <= 1) return null
+
+  return (
+    <div
+      data-slot="carousel-dots"
+      className={cn("flex items-center justify-center gap-1.5", className)}
+      {...props}
+    >
+      {Array.from({ length: scrollSnapCount }, (_, index) => (
+        <button
+          key={index}
+          type="button"
+          aria-label={`Ir para o slide ${index + 1}`}
+          aria-current={index === selectedIndex}
+          onClick={() => api?.scrollTo(index)}
+          className={cn(
+            "size-1.5 rounded-full transition-all",
+            index === selectedIndex
+              ? "w-4 bg-primary"
+              : "bg-primary/30 hover:bg-primary/50"
+          )}
+        />
+      ))}
+    </div>
+  )
+}
+
 export {
   type CarouselApi,
   Carousel,
@@ -243,5 +286,6 @@ export {
   CarouselItem,
   CarouselPrevious,
   CarouselNext,
+  CarouselDots,
   useCarousel,
 }
