@@ -8,12 +8,13 @@ import {
   CarouselPrevious,
 } from "../ui/carousel";
 import { PenLine } from "lucide-react";
+import CopyButon from "./copy-button";
 
 interface usageExempleCardProps {
   repertorio: Repertorio;
 }
 
-export default function usageExempleCard({
+export default function UsageExempleCard({
   repertorio,
 }: usageExempleCardProps) {
   const { usageTemplate } = repertorio;
@@ -69,6 +70,9 @@ export default function usageExempleCard({
                             </span>
                           ))}
                         </div>
+                        <div className="w-full mt-5">
+                          <CopyButon textToCopy={usageTemplate} />
+                        </div>
                       </div>
                     )}
                   </div>
@@ -90,6 +94,9 @@ export default function usageExempleCard({
                           </p>
                         </CardContent>
                       </Card>
+                      <div className="w-full mt-5">
+                        <CopyButon textToCopy={repertorio.usageExample[1]} />
+                      </div>
                     </div>
                   </CarouselItem>
                 )}
