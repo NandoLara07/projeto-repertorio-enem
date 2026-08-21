@@ -6,6 +6,7 @@ import ExpandableText from "@/components/common/expandable-text";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import UsageExempleCard from "@/components/common/usage-exemple-card";
+import DownloadPdfButton from "@/components/common/download-pdf-button";
 import { FileText, MessageSquareQuote, Tag, Target } from "lucide-react";
 
 export async function generateStaticParams() {
@@ -42,8 +43,9 @@ export default async function RepertorioDetalhe({
 
       <main className="flex-1 px-6 py-8 pt-[calc(9dvh+2rem)]">
         <div className="max-w-3xl mx-auto space-y-8 fade-in">
-          <div>
+          <div className="flex items-center justify-between">
             <BackButton />
+            <DownloadPdfButton repertorio={repertorio} />
           </div>
 
           <div className="space-y-3">
@@ -95,26 +97,6 @@ export default async function RepertorioDetalhe({
           {repertorio.usageTemplate && (
             <UsageExempleCard repertorio={repertorio} />
           )}
-
-          {/* {repertorio.usageExample && repertorio.usageExample.length > 0 && (
-            <Card>
-              <CardContent className="pt-6 space-y-2">
-                <h2 className="text-primary font-semibold">
-                  Exemplo com tema real
-                </h2>
-                {repertorio.usageExample[0] && (
-                  <p className="text-sm font-medium text-muted-foreground">
-                    {repertorio.usageExample[0]}
-                  </p>
-                )}
-                {repertorio.usageExample[1] && (
-                  <p className="text-foreground leading-relaxed">
-                    {repertorio.usageExample[1]}
-                  </p>
-                )}
-              </CardContent>
-            </Card>
-          )} */}
 
           <div className="grid md:grid-cols-2 gap-6">
             <div className="space-y-3">

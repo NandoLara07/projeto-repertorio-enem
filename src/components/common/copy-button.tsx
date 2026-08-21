@@ -22,7 +22,7 @@ export default function CopyButton({ textToCopy }: { textToCopy: string }) {
   };
 
   return (
-    <Button className="w-full" onClick={handleCopy}>
+    <Button className="w-full" onClick={handleCopy} disabled={copied}>
       {copied ? (
         <>
           <Check />
