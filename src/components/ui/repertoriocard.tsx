@@ -31,7 +31,7 @@ export const typeLabels: Record<Repertorio["type"], string> = {
   pessoa: "Pessoa",
 };
 
-const typeIcons: Record<Repertorio["type"], React.ReactNode> = {
+export const typeIcons: Record<Repertorio["type"], React.ReactNode> = {
   lei: <Scale className="h-4 w-4" />,
   filme: <Film className="h-4 w-4" />,
   documentario: <Video className="h-4 w-4" />,

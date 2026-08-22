@@ -49,6 +49,11 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
+html {
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
