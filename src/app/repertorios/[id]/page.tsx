@@ -118,10 +118,10 @@ export default async function RepertorioDetalhe({
             <div className="space-y-3">
               <h2 className="font-semibold text-foreground flex items-center gap-2">
                 <Tag className="h-4 w-4 text-amber-500" />
-                Palavras-chave
+                Eixo temático
               </h2>
               <div className="flex flex-wrap gap-2">
-                {repertorio.keywords.map((k) => (
+                {repertorio.eixoTematico.map((k) => (
                   <span
                     key={k}
                     className="text-sm bg-muted text-muted-foreground px-3 py-1 rounded-full"

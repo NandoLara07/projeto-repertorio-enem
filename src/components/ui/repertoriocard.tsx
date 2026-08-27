@@ -15,11 +15,27 @@ import {
   Target,
 } from "lucide-react";
 import { Repertorio } from "@/types/repertorio";
+import { Relevance } from "@/lib/busca-repertorios";
 import { asset } from "@/lib/paths";
 
+export const relevanceLabels: Record<Relevance, string> = {
+  "muito-relevante": "Muito relevante",
+  relevante: "Relevante",
+  "pouco-relevante": "Pouco relevante",
+};
+
+const relevanceVariants: Record<
+  Relevance,
+  "default" | "secondary" | "outline"
+> = {
+  "muito-relevante": "default",
+  relevante: "secondary",
+  "pouco-relevante": "outline",
+};
+
 export const typeLabels: Record<Repertorio["type"], string> = {
-  lei: "Lei",
   filme: "Filme",
+  lei: "Lei",
   documentario: "Documentário",
   serie: "Série",
   evento: "Evento Histórico",
@@ -32,8 +48,8 @@ export const typeLabels: Record<Repertorio["type"], string> = {
 };
 
 export const typeIcons: Record<Repertorio["type"], React.ReactNode> = {
-  lei: <Scale className="h-4 w-4" />,
   filme: <Film className="h-4 w-4" />,
+  lei: <Scale className="h-4 w-4" />,
   documentario: <Video className="h-4 w-4" />,
   serie: <Tv className="h-4 w-4" />,
   evento: <BookOpen className="h-4 w-4" />,
@@ -48,11 +64,13 @@ export const typeIcons: Record<Repertorio["type"], React.ReactNode> = {
 interface RepertorioCardProps {
   repertorio: Repertorio;
   index?: number;
+  relevance?: Relevance;
 }
 
 export const RepertorioCard = ({
   repertorio,
   index = 0,
+  relevance,
 }: RepertorioCardProps) => {
   return (
     <Card
@@ -72,12 +90,22 @@ export const RepertorioCard = ({
               {repertorio.title}
             </h3>
           </div>
+          {relevance && (
+            <Badge
+              variant={relevanceVariants[relevance]}
+              className="text-xs font-medium shrink-0"
+            >
+              {relevanceLabels[relevance]}
+            </Badge>
+          )}
         </div>
         <div className="flex flex-wrap gap-1.5 mt-2">
           <Badge variant="outline" className="text-xs font-medium">
             {typeLabels[repertorio.type]}
           </Badge>
-          <Badge className="text-xs font-medium">{repertorio.category}</Badge>
+          <Badge className="text-xs font-medium">
+            {repertorio.eixoTematico[0]}
+          </Badge>
         </div>
       </CardHeader>
       <CardContent>

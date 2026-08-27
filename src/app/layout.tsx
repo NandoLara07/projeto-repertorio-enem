@@ -4,6 +4,7 @@ import { asset } from "@/lib/paths";
 import "./globals.css";
 import ThemeProvider from "@/providers/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
+import ScrollbarGutterController from "@/components/common/scrollbar-gutter-controller";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,6 +37,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+          <ScrollbarGutterController />
           {children}
           <Toaster />
         </ThemeProvider>
