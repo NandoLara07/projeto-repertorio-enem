@@ -23,5 +23,8 @@ export function tokenize(text: string): string[] {
 }
 
 export function stem(word: string): string {
-  return stemmer.stem(word.toLowerCase());
+  // Stemmatiza primeiro (o algoritmo depende do acento pra reconhecer
+  // sufixos como "-ção") e só remove o acento do resultado, pra que
+  // "fábrica" e "fabrica" (sem acento) produzam o mesmo radical.
+  return normalize(stemmer.stem(word.toLowerCase()));
 }

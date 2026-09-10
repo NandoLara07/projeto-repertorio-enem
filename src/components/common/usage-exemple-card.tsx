@@ -8,7 +8,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "../ui/carousel";
-import { PenLine } from "lucide-react";
+import { Lightbulb, PenLine } from "lucide-react";
 import CopyButon from "./copy-button";
 
 interface usageExempleCardProps {
@@ -72,6 +72,14 @@ export default function UsageExempleCard({
                             </span>
                           ))}
                         </div>
+                        {repertorio.usageTips && (
+                          <div className="flex gap-2 p-3 bg-accent/50 rounded-lg">
+                            <Lightbulb className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+                            <p className="text-sm text-muted-foreground leading-relaxed">
+                              {repertorio.usageTips}
+                            </p>
+                          </div>
+                        )}
                         <div className="w-full mt-5">
                           <CopyButon textToCopy={usageTemplate} />
                         </div>
