@@ -60,23 +60,23 @@ const searchIndex: SearchEntry[] = RepertoriosData.map(buildEntry);
 
 const fuse = new Fuse(searchIndex, {
   keys: [
-    { name: "stemmedKeywords", weight: 0.16 },
+    { name: "stemmedKeywords", weight: 0.16 }, //palvras-chave
     { name: "normalizedKeywords", weight: 0.09 },
 
-    { name: "stemmedEixoTematico", weight: 0.13 },
+    { name: "stemmedEixoTematico", weight: 0.13 }, //eixo tematico 
     { name: "normalizedEixoTematico", weight: 0.07 },
 
-    { name: "stemmedThemes", weight: 0.13 },
+    { name: "stemmedThemes", weight: 0.13 }, // temas específicos
     { name: "normalizedThemes", weight: 0.07 },
 
-    { name: "stemmedExampleTheme", weight: 0.13 },
-    { name: "normalizedExampleTheme", weight: 0.07 },
-
-    { name: "stemmedCategory", weight: 0.065 },
+    { name: "stemmedCategory", weight: 0.065 }, // categoria
     { name: "normalizedCategory", weight: 0.035 },
 
-    { name: "stemmedTitle", weight: 0.05 },
+    { name: "stemmedTitle", weight: 0.05 }, // titulo
     { name: "normalizedTitle", weight: 0.03 },
+
+    { name: "stemmedExampleTheme", weight: 0.03 }, // tema exemplo
+    { name: "normalizedExampleTheme", weight: 0.01 },
   ],
   includeScore: true,
   useExtendedSearch: true,

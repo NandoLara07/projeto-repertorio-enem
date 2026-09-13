@@ -53,9 +53,18 @@ export default async function RepertorioDetalhe({
               <Badge variant="outline" className="font-medium">
                 {typeLabels[repertorio.type]}
               </Badge>
-              <Badge variant="secondary" className="font-medium">
-                {repertorio.category}
+              <Badge
+                variant="secondary"
+                className="max-w-full min-w-0 truncate"
+                title={repertorio.category}
+              >
+                {repertorio.category
+                  .split("/")
+                  .map((c) => c.trim())
+                  .slice(0, 4)
+                  .join(" / ")}
               </Badge>
+
               {repertorio.bestFor && (
                 <Badge className="bg-primary/10 text-primary border-primary/20 font-medium">
                   <Target className="h-3 w-3 mr-1" />
@@ -105,7 +114,7 @@ export default async function RepertorioDetalhe({
                 Temas específicos
               </h2>
               <div className="flex flex-wrap gap-2">
-                {repertorio.specificThemes.map((t) => (
+                {repertorio.specificThemes.slice(0, 5).map((t) => (
                   <span
                     key={t}
                     className="text-sm bg-accent text-accent-foreground px-3 py-1 rounded-full"
