@@ -5,7 +5,8 @@ import { useState } from "react";
 import { ArrowUp } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 import Header from "@/components/common/header";
-import { asset } from "@/lib/paths";
+import { asset } from "@/lib/paths";  
+import Link from "next/link";
 
 export default function Busca() {
   const [EssayTheme, setEssayTheme] = useState("");
@@ -58,6 +59,14 @@ export default function Busca() {
             <div className="bg-accent/50 rounded-xl p-4 mt-5 text-sm text-accent-foreground max-w-150">
               <strong>Dica:</strong> Quanto mais completo o tema, melhores serão
               as recomendações. Tente incluir palavras-chave específicas.
+            </div>
+            <div>
+              <Link
+                href="/repertorios?tema=@all"
+                className="text-sm text-muted-foreground mt-3"
+              >
+                Ou se quiser, clique aqui para ver todos os repertórios.
+              </Link>
             </div>
           </ViewTransition>
         </div>
