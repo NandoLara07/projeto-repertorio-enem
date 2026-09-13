@@ -13,6 +13,7 @@ import {
   PenLine,
   UserRound,
   Target,
+  FileText,
 } from "lucide-react";
 import { Repertorio } from "@/types/repertorio";
 import { Relevance } from "@/lib/busca-repertorios";
@@ -44,7 +45,7 @@ export const typeLabels: Record<Repertorio["type"], string> = {
   conceito: "Conceito",
   movimento: "Movimento",
   citação: "Citação",
-  pessoa: "Pessoa",
+  documento: "Documento",
 };
 
 export const typeIcons: Record<Repertorio["type"], React.ReactNode> = {
@@ -58,7 +59,7 @@ export const typeIcons: Record<Repertorio["type"], React.ReactNode> = {
   conceito: <Layers className="h-4 w-4" />,
   movimento: <Users className="h-4 w-4" />,
   citação: <PenLine className="h-4 w-4" />,
-  pessoa: <UserRound className="h-4 w-4" />,
+  documento: <FileText className="h-4 w-4" />,
 };
 
 interface RepertorioCardProps {

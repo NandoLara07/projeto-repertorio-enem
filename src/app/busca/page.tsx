@@ -5,7 +5,7 @@ import { useState } from "react";
 import { ArrowUp } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 import Header from "@/components/common/header";
-import { asset } from "@/lib/paths";  
+import { asset } from "@/lib/paths";
 import Link from "next/link";
 
 export default function Busca() {
@@ -57,8 +57,8 @@ export default function Busca() {
               </button>
             </div>
             <div className="bg-accent/50 rounded-xl p-4 mt-5 text-sm text-accent-foreground max-w-150">
-              <strong>Dica:</strong> Quanto mais completo o tema, melhores serão
-              as recomendações. Tente incluir palavras-chave específicas.
+              <strong>Dica:</strong> Quanto mais completo, melhores serão as
+              recomendações. Tente incluir palavras-chave específicas.
             </div>
             <div>
               <Link

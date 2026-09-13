@@ -232,7 +232,7 @@ export const RepertoriosData: Repertorio[] = [
   {
     id: "004",
     title: "Declaração Universal do Direito Humano (DUDH)",
-    type: "lei",
+    type: "documento",
     category: "Direitos Humanos / Cidadania / Direitos Sociais",
     eixoTematico: ["Direitos humanos e cidadania", "Desigualdade e inclusão"],
     specificThemes: [

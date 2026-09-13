@@ -27,7 +27,7 @@ export interface Repertorio {
     | "conceito"
     | "movimento"
     | "citação"
-    | "pessoa";
+    | "documento";
 
   category: string; // Violência, Infância, Direitos, Cidadania, Educação
 
