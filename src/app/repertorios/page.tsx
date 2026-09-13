@@ -111,7 +111,7 @@ function RepertoriosContent() {
         )}
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2 mt-6">
+      <div className="grid gap-4 md:grid-cols-2 mt-6 theme-transition-off">
         {recommended.length === 0 ? (
           <div className="col-span-full text-center py-12 space-y-2">
             <p className="text-foreground font-medium">

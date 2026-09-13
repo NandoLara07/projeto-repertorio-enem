@@ -244,3 +244,8 @@ html.no-scrollbar-gutter {
     transition-duration: 0ms !important;
   }
 }
+
+.theme-transition-off,
+.theme-transition-off * {
+  transition-property: box-shadow, translate !important;
+}
