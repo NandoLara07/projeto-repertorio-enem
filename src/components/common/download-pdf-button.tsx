@@ -205,7 +205,12 @@ export default function DownloadPdfButton({
   };
 
   return (
-    <Button variant="outline" onClick={handleDownload} disabled={loading}>
+    <Button
+      variant="outline"
+      onClick={handleDownload}
+      disabled={loading}
+      className="text-red-500 hover:text-red-600 hover:bg-red-500/10 bg-red-50"
+    >
       {loading ? (
         <Loader2 className="h-4 w-4 mr-2 animate-spin" />
       ) : (

@@ -63,7 +63,7 @@ const fuse = new Fuse(searchIndex, {
     { name: "stemmedKeywords", weight: 0.16 }, //palvras-chave
     { name: "normalizedKeywords", weight: 0.09 },
 
-    { name: "stemmedEixoTematico", weight: 0.13 }, //eixo tematico 
+    { name: "stemmedEixoTematico", weight: 0.13 }, //eixo tematico
     { name: "normalizedEixoTematico", weight: 0.07 },
 
     { name: "stemmedThemes", weight: 0.13 }, // temas específicos

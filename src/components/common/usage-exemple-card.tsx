@@ -23,7 +23,7 @@ export default function UsageExempleCard({
   if (!usageTemplate) return null;
 
   return (
-    <Card className="border-2 border-primary/30 bg-primary/5 py-4 px-2">
+    <Card className="border-2 border-primary/30 bg-primary/5 py-4 px-2 dark:bg-[#0F161B]">
       <CardContent className="space-y-4">
         <Carousel>
           <CarouselDots className="mb-3" />

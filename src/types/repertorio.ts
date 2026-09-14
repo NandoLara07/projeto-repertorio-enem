@@ -18,16 +18,16 @@ export interface Repertorio {
 
   type:
     | "filme"
-    | "lei"
-    | "documentario"
     | "serie"
-    | "evento"
-    | "dado"
+    | "documentario"
+    | "lei"
+    | "documento"
     | "livro"
-    | "conceito"
-    | "movimento"
     | "citação"
-    | "documento";
+    | "dado"
+    | "evento"
+    | "movimento"
+    | "conceito";
 
   category: string; // Violência, Infância, Direitos, Cidadania, Educação
 

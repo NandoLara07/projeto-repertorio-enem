@@ -6,7 +6,7 @@ import { ArrowUp } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 import Header from "@/components/common/header";
 import { asset } from "@/lib/paths";
-import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default function Busca() {
   const [EssayTheme, setEssayTheme] = useState("");
@@ -61,12 +61,21 @@ export default function Busca() {
               recomendações. Tente incluir palavras-chave específicas.
             </div>
             <div>
-              <Link
-                href="/repertorios?tema=@all"
-                className="text-sm text-muted-foreground mt-3"
-              >
-                Ou se quiser, clique aqui para ver todos os repertórios.
-              </Link>
+              <div>
+                <p className="text-sm text-muted-foreground mt-3">
+                  Ou se quiser, clique aqui para ver todos os repertórios.
+                </p>
+              </div>
+              <div>
+                <Button
+                  className="mt-3 pr-2 pl-2 pt-5 pb-5 text-xs shadow-md"
+                  onClick={() =>
+                    (window.location.href = asset("/repertorios?tema=@all"))
+                  }
+                >
+                  SELECIONAR TODOS
+                </Button>
+              </div>
             </div>
           </ViewTransition>
         </div>

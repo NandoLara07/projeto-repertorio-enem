@@ -77,7 +77,7 @@ export default async function RepertorioDetalhe({
             </h1>
           </div>
 
-          <Card>
+          <Card className="dark:bg-[#0F161B]">
             <CardContent className="space-y-3">
               <div className="flex items-center gap-2 text-primary font-semibold">
                 <FileText className="h-5 w-5" />
@@ -85,7 +85,7 @@ export default async function RepertorioDetalhe({
               </div>
               <ExpandableText
                 text={repertorio.explanation}
-                className="text-foreground leading-relaxed"
+                className="text-foreground leading-relaxed dark:opacity-90"
               />
             </CardContent>
           </Card>
@@ -98,7 +98,7 @@ export default async function RepertorioDetalhe({
               </div>
               <ExpandableText
                 text={repertorio.essayUsage}
-                className="text-foreground leading-relaxed"
+                className="text-foreground leading-relaxed dark:opacity-90"
               />
             </CardContent>
           </Card>

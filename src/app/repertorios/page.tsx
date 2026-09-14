@@ -103,6 +103,7 @@ function RepertoriosContent() {
                 variant="ghost"
                 size="sm"
                 onClick={() => setSelectedType("todos")}
+                className="text-red-500 hover:text-red-600 hover:bg-red-500/10"
               >
                 <X /> Limpar
               </Button>

@@ -394,6 +394,7 @@ export const RepertoriosData: Repertorio[] = [
       "Formação de valores na adolescência",
       "Responsabilidade da família e da escola na formação dos jovens",
       "Normalização da violência contra a mulher",
+      "Feminicídio"
     ],
     keywords: [
       "adolescência",
@@ -401,6 +402,8 @@ export const RepertoriosData: Repertorio[] = [
       "jovens",
       "violência contra a mulher",
       "violência de gênero",
+      "feminicidio",
+      "fem",
       "violência contra meninas",
       "violência digital",
       "violência virtual",
@@ -511,11 +514,14 @@ export const RepertoriosData: Repertorio[] = [
       "Autoritarismo",
       "Discriminação contra mulheres",
       "Sub-representação feminina",
+      "Feminicídio",
     ],
     keywords: [
       "o conto da aia",
       "mulheres",
       "mulher",
+      "feminicidio",
+      "fem",
       "direitos das mulheres",
       "direitos femininos",
       "direitos reprodutivos",
@@ -668,7 +674,7 @@ export const RepertoriosData: Repertorio[] = [
       "professores da rede pública",
     ],
     explanation:
-      "A série brasileira \"Segunda Chamada\", produzida pela TV Globo, acompanha o cotidiano de uma escola pública localizada na periferia de São Paulo que oferece aulas de Educação de Jovens e Adultos (EJA) no período noturno. A trama apresenta professores e estudantes que, apesar das dificuldades sociais e econômicas, buscam concluir a educação básica. Ao longo da narrativa, são retratadas situações como evasão escolar, violência, preconceito, vulnerabilidade social e falta de recursos, além dos desafios enfrentados pelos profissionais da educação no exercício de seu trabalho. Dessa forma, a série evidencia obstáculos relacionados ao acesso e à permanência na educação básica, além de questões como desigualdade educacional, valorização dos professores e condições da educação pública brasileira.",
+      'A série brasileira "Segunda Chamada", produzida pela TV Globo, acompanha o cotidiano de uma escola pública localizada na periferia de São Paulo que oferece aulas de Educação de Jovens e Adultos (EJA) no período noturno. A trama apresenta professores e estudantes que, apesar das dificuldades sociais e econômicas, buscam concluir a educação básica. Ao longo da narrativa, são retratadas situações como evasão escolar, violência, preconceito, vulnerabilidade social e falta de recursos, além dos desafios enfrentados pelos profissionais da educação no exercício de seu trabalho. Dessa forma, a série evidencia obstáculos relacionados ao acesso e à permanência na educação básica, além de questões como desigualdade educacional, valorização dos professores e condições da educação pública brasileira.',
     essayUsage:
       "O repertório pode ser utilizado para discutir problemas relacionados à educação pública e às condições enfrentadas por professores e estudantes no Brasil. É especialmente produtivo para temas sobre valorização e reconhecimento profissional dos docentes, remuneração e condições de trabalho, infraestrutura escolar, educação de jovens e adultos, evasão escolar, desigualdade educacional e violência no ambiente escolar. A série permite relacionar as dificuldades presentes no cotidiano escolar às condições estruturais que interferem na atuação dos professores e na qualidade da educação.",
     usageTemplate:
@@ -1474,7 +1480,7 @@ export const RepertoriosData: Repertorio[] = [
       "impactos ambientais",
     ],
     explanation:
-      'O filme "Não Olhe Para Cima", dirigido por Adam McKay, acompanha dois astrônomos que descobrem que um cometa está em rota de colisão com a Terra e provocará uma catástrofe em poucos meses. Ao perceberem a gravidade da situação, os cientistas procuram autoridades, meios de comunicação e outras instituições para alertar a população e tentar impedir o desastre. Entretanto, seus alertas são recebidos com descrédito, enquanto políticos e empresários passam a considerar os possíveis benefícios econômicos da situação. A mídia também transforma a ameaça em espetáculo, tratando uma questão científica e de sobrevivência coletiva como entretenimento e disputa política. Paralelamente, parte da população passa a rejeitar as evidências apresentadas pelos cientistas, influenciada por discursos políticos e informações distorcidas. Dessa forma, o filme critica o negacionismo científico, a manipulação da informação e a dificuldade de mobilização social diante de ameaças que exigem respostas coletivas. Embora a narrativa utilize a colisão de um cometa como ameaça central, a obra também estabelece uma relação com problemas ambientais contemporâneos, especialmente as mudanças climáticas, tendo sido inspirada pela frustração do diretor diante da forma como evidências científicas sobre o aquecimento global são frequentemente ignoradas ou politizadas.',
+      'O filme "Não Olhe Para Cima", dirigido por Adam McKay, acompanha dois astrônomos que descobrem que um cometa está em rota de colisão com a Terra e provocará uma catástrofe em poucos meses. Ao perceberem a gravidade da situação, os cientistas procuram autoridades, meios de comunicação e outras instituições para alertar a população e tentar impedir o desastre.\n\nEntretanto, seus alertas são recebidos com descrédito, enquanto políticos e empresários passam a considerar os possíveis benefícios econômicos da situação. A mídia também transforma a ameaça em espetáculo, tratando uma questão científica e de sobrevivência coletiva como entretenimento e disputa política.\n\nParalelamente, parte da população passa a rejeitar as evidências apresentadas pelos cientistas, influenciada por discursos políticos e informações distorcidas. Dessa forma, o filme critica o negacionismo científico, a manipulação da informação e a dificuldade de mobilização social diante de ameaças que exigem respostas coletivas.\n\nEmbora a narrativa utilize a colisão de um cometa como ameaça central, a obra também estabelece uma relação com problemas ambientais contemporâneos, especialmente as mudanças climáticas, tendo sido inspirada pela frustração do diretor diante da forma como evidências científicas sobre o aquecimento global são frequentemente ignoradas ou politizadas.',
     essayUsage:
       "Pode ser utilizado para discutir a dificuldade de reconhecimento e enfrentamento de problemas ambientais e de risco, especialmente aqueles relacionados às mudanças climáticas. Também permite abordar o negacionismo científico, a desinformação, a influência de interesses políticos e econômicos sobre decisões ambientais e a responsabilidade coletiva diante de ameaças que afetam toda a sociedade.",
     usageTemplate:

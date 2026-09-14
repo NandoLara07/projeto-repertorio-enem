@@ -11,7 +11,6 @@ import {
   Tv,
   Video,
   PenLine,
-  UserRound,
   Target,
   FileText,
 } from "lucide-react";
@@ -36,30 +35,30 @@ const relevanceVariants: Record<
 
 export const typeLabels: Record<Repertorio["type"], string> = {
   filme: "Filme",
-  lei: "Lei",
-  documentario: "Documentário",
   serie: "Série",
-  evento: "Evento Histórico",
-  dado: "Dado",
-  livro: "Livro",
-  conceito: "Conceito",
-  movimento: "Movimento",
-  citação: "Citação",
+  documentario: "Documentário",
+  lei: "Lei",
   documento: "Documento",
+  livro: "Livro",
+  citação: "Citação",
+  dado: "Dado",
+  evento: "Evento Histórico",
+  movimento: "Movimento",
+  conceito: "Conceito",
 };
 
 export const typeIcons: Record<Repertorio["type"], React.ReactNode> = {
   filme: <Film className="h-4 w-4" />,
-  lei: <Scale className="h-4 w-4" />,
-  documentario: <Video className="h-4 w-4" />,
   serie: <Tv className="h-4 w-4" />,
-  evento: <BookOpen className="h-4 w-4" />,
-  dado: <BarChart3 className="h-4 w-4" />,
-  livro: <BookMarked className="h-4 w-4" />,
-  conceito: <Layers className="h-4 w-4" />,
-  movimento: <Users className="h-4 w-4" />,
-  citação: <PenLine className="h-4 w-4" />,
+  documentario: <Video className="h-4 w-4" />,
+  lei: <Scale className="h-4 w-4" />,
   documento: <FileText className="h-4 w-4" />,
+  livro: <BookMarked className="h-4 w-4" />,
+  citação: <PenLine className="h-4 w-4" />,
+  dado: <BarChart3 className="h-4 w-4" />,
+  evento: <BookOpen className="h-4 w-4" />,
+  movimento: <Users className="h-4 w-4" />,
+  conceito: <Layers className="h-4 w-4" />,
 };
 
 interface RepertorioCardProps {
@@ -75,7 +74,7 @@ export const RepertorioCard = ({
 }: RepertorioCardProps) => {
   return (
     <Card
-      className="cursor-pointer hover:shadow-lg transition-all duration-400 hover:-translate-y-1 card-in border-border/60"
+      className="cursor-pointer hover:shadow-lg transition-all duration-400 hover:-translate-y-1 card-in border-border/60 dark:bg-[#0F161B] dark:border-[#1C2731]"
       style={{ animationDelay: `${index * 80}ms` }}
       onClick={() => {
         window.location.href = asset(
