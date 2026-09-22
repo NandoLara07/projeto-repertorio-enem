@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/repertoriocard";
 import { Repertorio } from "@/types/repertorio";
 import { buscarRepertorios } from "@/lib/busca-repertorios";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 const allTypes = Object.keys(typeLabels) as Repertorio["type"][];
 
@@ -179,9 +180,69 @@ export default function Repertorios() {
 
           <Suspense
             fallback={
-              <div className="space-y-2">
-                <Skeleton className="h-8 w-64 mx-auto" />
-                <Skeleton className="h-4 w-40 mx-auto" />
+              <div>
+                <div className="space-y-5">
+                  <Skeleton className="h-7 w-64" />
+                  <div className="flex space-x-1">
+                    <Skeleton className="h-4 w-4 rounded-sm" />
+                    <Skeleton className="h-4 w-40" />
+                  </div>
+                </div>
+
+                <div className="pt-3 flex flex-row space-x-2">
+                  <Skeleton className="h-8 w-8 rounded-sm" />
+                  <Skeleton className="h-8 w-53" />
+                </div>
+                <div className="grid gap-4 md:grid-cols-2 pt-6">
+                  <Card className="card-in border-border/60 bg-muted/40">
+                    <CardHeader className="pb-3">
+                      <div className="flex items-center gap-2">
+                        <Skeleton className="h-4 w-4 rounded-sm" />
+                        <Skeleton className="h-4 w-2/3" />
+                      </div>
+                      <div className="flex flex-wrap gap-1.5 mt-2">
+                        <Skeleton className="h-5 w-16 rounded-full" />
+                        <Skeleton className="h-5 w-24 rounded-full" />
+                      </div>
+                    </CardHeader>
+                    <CardContent>
+                      <Skeleton className="h-4 w-full" />
+                      <Skeleton className="h-4 w-4/5 mt-1.5" />
+                      <div className="flex flex-wrap gap-1 mt-3">
+                        <Skeleton className="h-5 w-20 rounded-full" />
+                        <Skeleton className="h-5 w-28 rounded-full" />
+                        <Skeleton className="h-5 w-16 rounded-full" />
+                      </div>
+                      <div className="mt-3 pt-3 border-t border-border/40">
+                        <Skeleton className="h-5 w-24 rounded-full" />
+                      </div>
+                    </CardContent>
+                  </Card>
+                  <Card className="card-in border-border/60 bg-muted/40">
+                    <CardHeader className="pb-3">
+                      <div className="flex items-center gap-2">
+                        <Skeleton className="h-4 w-4 rounded-sm" />
+                        <Skeleton className="h-4 w-2/3" />
+                      </div>
+                      <div className="flex flex-wrap gap-1.5 mt-2">
+                        <Skeleton className="h-5 w-16 rounded-full" />
+                        <Skeleton className="h-5 w-24 rounded-full" />
+                      </div>
+                    </CardHeader>
+                    <CardContent>
+                      <Skeleton className="h-4 w-full" />
+                      <Skeleton className="h-4 w-4/5 mt-1.5" />
+                      <div className="flex flex-wrap gap-1 mt-3">
+                        <Skeleton className="h-5 w-20 rounded-full" />
+                        <Skeleton className="h-5 w-28 rounded-full" />
+                        <Skeleton className="h-5 w-16 rounded-full" />
+                      </div>
+                      <div className="mt-3 pt-3 border-t border-border/40">
+                        <Skeleton className="h-5 w-24 rounded-full" />
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
               </div>
             }
           >
