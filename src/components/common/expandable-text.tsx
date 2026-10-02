@@ -1,10 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-
-const CLAMP_LENGTH_THRESHOLD = 280;
 
 interface ExpandableTextProps {
   text: string;
@@ -13,20 +11,36 @@ interface ExpandableTextProps {
 
 export function ExpandableText({ text, className }: ExpandableTextProps) {
   const [expanded, setExpanded] = useState(false);
-  const isLong = text.length > CLAMP_LENGTH_THRESHOLD;
+  const [isClamped, setIsClamped] = useState(false);
+  const textRef = useRef<HTMLParagraphElement>(null);
+
+  useEffect(() => {
+    const el = textRef.current;
+    if (!el || expanded) return;
+
+    const checkClamp = () => {
+      setIsClamped(el.scrollHeight > el.clientHeight + 1);
+    };
+
+    checkClamp();
+    const observer = new ResizeObserver(checkClamp);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [text, expanded]);
 
   return (
     <div>
       <p
+        ref={textRef}
         className={cn(
           "whitespace-pre-line",
-          !expanded && isLong && "line-clamp-4",
+          !expanded && "line-clamp-4",
           className,
         )}
       >
         {text}
       </p>
-      {isLong && (
+      {(isClamped || expanded) && (
         <Button
           variant="link"
           size="sm"
