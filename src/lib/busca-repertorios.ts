@@ -150,16 +150,16 @@ function getRelevance(weightedCoverage: number): Relevance {
 }
 
 export function buscarRepertorios(tema: string): RepertorioRecomendado[] {
-  if (tema.trim().toLowerCase() === "@all") {
-    return RepertoriosData.map((repertorio) => ({ id: repertorio.id }));
-  }
+  // if (tema.trim().toLowerCase() === "@all") {
+  //   return RepertoriosData.map((repertorio) => ({ id: repertorio.id }));
+  // }
   // Se alguma hora eu quiser q seja ordenado por ordem alfabética
 
-  // if (tema.trim().toLowerCase() === "@all") {
-  //   return [...RepertoriosData]
-  //     .sort((a, b) => a.title.localeCompare(b.title, "pt-BR")) // Isso aqui só pra retornar em ordem alfabetica, coisa minha mesmo
-  //     .map((repertorio) => ({ id: repertorio.id }));
-  // }
+  if (tema.trim().toLowerCase() === "@all") {
+    return [...RepertoriosData]
+      .sort((a, b) => a.title.localeCompare(b.title, "pt-BR")) // Isso aqui só pra retornar em ordem alfabetica, coisa minha mesmo
+      .map((repertorio) => ({ id: repertorio.id }));
+  }
 
   const words = tokenize(tema);
   if (words.length === 0) return [];

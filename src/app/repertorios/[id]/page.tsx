@@ -53,17 +53,15 @@ export default async function RepertorioDetalhe({
               <Badge variant="outline" className="font-medium">
                 {typeLabels[repertorio.type]}
               </Badge>
-              <Badge
-                variant="secondary"
-                className="max-w-full min-w-0 truncate"
-                title={repertorio.category}
-              >
-                {repertorio.category
-                  .split("/")
-                  .map((c) => c.trim())
-                  .slice(0, 4)
-                  .join(" / ")}
-              </Badge>
+              {repertorio.category
+                .split("/")
+                .map((c) => c.trim())
+                .slice(0, 4)
+                .map((c) => (
+                  <Badge key={c} variant="secondary">
+                    {c}
+                  </Badge>
+                ))}
 
               {repertorio.bestFor && (
                 <Badge className="bg-primary/10 text-primary border-primary/20 font-medium">
