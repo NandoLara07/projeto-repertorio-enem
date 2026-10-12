@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/repertoriocard";
 import { Repertorio } from "@/types/repertorio";
 import { buscarRepertorios } from "@/lib/busca-repertorios";
+import { buscarRepertoriosMiniSearch } from "@/lib/busca-minisearch";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 const allTypes = Object.keys(typeLabels) as Repertorio["type"][];
@@ -34,7 +35,26 @@ function RepertoriosContent() {
   const searchParams = useSearchParams();
   const tema = searchParams.get("tema") ?? "";
 
-  const recommended = useMemo(() => buscarRepertorios(tema), [tema]);
+  // Mecanismo de busca: deixe só uma das linhas abaixo ativa.
+
+  // const recommended = useMemo(() => buscarRepertoriosMiniSearch(tema), [tema]); // MiniSearch (novo)
+  // const recommended = useMemo(() => buscarRepertorios(tema), [tema]); // Fuse (antigo)
+
+  // ---------------
+  // Teste FuseJS e MiniSearch (temporário)
+  // troca o mecanismo de busca pra testar
+  const [searchMechanism, setSearchMechanism] = useState<
+    "MiniSearch" | "FuseJS (antigo)"
+  >("MiniSearch");
+
+  const recommended = useMemo(
+    () =>
+      searchMechanism === "MiniSearch"
+        ? buscarRepertoriosMiniSearch(tema)
+        : buscarRepertorios(tema),
+    [tema, searchMechanism],
+  );
+  // ---------------
 
   const [selectedType, setSelectedType] = useState<
     Repertorio["type"] | "todos"
@@ -112,6 +132,21 @@ function RepertoriosContent() {
           </div>
         )}
       </div>
+      {/* --------------- */}
+      {/* Temporario teste de mecanismmo de busca */}
+      <div className="flex justify-center">
+        <p
+          className="cursor-pointer"
+          onClick={() =>
+            setSearchMechanism((atual) =>
+              atual === "MiniSearch" ? "FuseJS (antigo)" : "MiniSearch",
+            )
+          }
+        >
+          debug: search_mechanism: {searchMechanism}
+        </p>
+      </div>
+      {/* --------------- */}
 
       <div className="grid gap-4 md:grid-cols-2 mt-6 theme-transition-off">
         {recommended.length === 0 ? (
