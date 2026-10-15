@@ -39,7 +39,12 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <ScrollbarGutterController />
           {children}
-          <Toaster />
+          {/* `fixed` makes Next's post-navigation focus handler skip this
+              wrapper; otherwise it focuses the Toaster's <section tabindex="-1">
+              and steals the autoFocus from the next page's textarea. */}
+          <div className="fixed">
+            <Toaster />
+          </div>
         </ThemeProvider>
       </body>
     </html>
