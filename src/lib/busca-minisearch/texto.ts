@@ -3,8 +3,9 @@ import { newStemmer } from "snowball-stemmers";
 const stemmer = newStemmer("portuguese");
 
 // Palavras gramaticais (artigos, preposições, pronomes, conjunções, verbos de
-// ligação...). Escritas sem acento porque a comparação ignora acentos: "não" e
-// "nao" caem do mesmo jeito.
+// ligação...) e de construção de frase ("como forma de", "por meio de").
+// Escritas sem acento porque a comparação ignora acentos: "não" e "nao" caem do
+// mesmo jeito. A comparação é pela palavra inteira: "forma" sai, "formação" não.
 const PALAVRAS_VAZIAS = new Set(
   `a o as os um uma uns umas ao aos
   de do da dos das dum duma duns dumas em no na nos nas num numa nuns numas
@@ -26,7 +27,7 @@ const PALAVRAS_VAZIAS = new Set(
   proprio propria proprios proprias cada algum alguma alguns algumas
   nenhum nenhuma tanto tanta tantos tantas qualquer quaisquer tal tais demais ademais
   ja ainda so apenas bem mal aqui ali la ai hoje agora atualmente sempre nunca
-  jamais talvez sim nao tao meio grande grandes
+  jamais talvez sim nao tao meio forma formas grande grandes
   ser sou es somos sao era eram fui foi fomos foram seja sejam sera serao seria
   seriam sendo sido estar estou estamos estao estava estavam esteve estiveram
   estando ter tenho tem temos tinha tinham tive teve tiveram tera terao teria

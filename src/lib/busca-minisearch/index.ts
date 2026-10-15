@@ -50,8 +50,11 @@ const MAX_INTERVALO = 2;
 // uma expressão do dicionário) vale metade de um par normal.
 const PESO_PAR_DISTANTE = 0.5;
 // Ideia que aparece em até 10% dos repertórios é rara: é o que deixa o tema
-// específico.
+// específico. Mas precisa estar em pelo menos 2: palavra que só um repertório
+// tem costuma ser coincidência (como "forma" em "Arte como forma de
+// resistência"), não o centro do tema.
 const FRACAO_IDEIA_RARA = 0.1;
+const MINIMO_REPERTORIOS_IDEIA_RARA = 2;
 // Termo presente em até 15% dos repertórios conta inteiro. Acima disso, o peso
 // cai junto com o IDF: "social" está em quase todos e quase não ajuda a escolher.
 const FRACAO_ESPECIFICA = 0.15;
@@ -423,7 +426,10 @@ function trataDeIdeiaRara(doc: Documento, conceitos: Conceito[]): boolean {
   const limite = Math.max(1, FRACAO_IDEIA_RARA * documentos.length);
   const raras = conceitos.filter(
     ({ principal, soJunto, quantos }) =>
-      principal && !soJunto && quantos > 0 && quantos <= limite,
+      principal &&
+      !soJunto &&
+      quantos >= MINIMO_REPERTORIOS_IDEIA_RARA &&
+      quantos <= limite,
   );
   if (raras.length === 0) return false;
   const maisRara = Math.min(...raras.map(({ quantos }) => quantos));

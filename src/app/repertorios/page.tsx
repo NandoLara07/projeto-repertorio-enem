@@ -35,25 +35,25 @@ function RepertoriosContent() {
   const searchParams = useSearchParams();
   const tema = searchParams.get("tema") ?? "";
 
-  // Mecanismo de busca: deixe só uma das linhas abaixo ativa.
+  // Mecanismo de busca, deixe só uma das linhas abaixo ativa
 
-  // const recommended = useMemo(() => buscarRepertoriosMiniSearch(tema), [tema]); // MiniSearch (novo)
+  const recommended = useMemo(() => buscarRepertoriosMiniSearch(tema), [tema]); // MiniSearch (novo)
   // const recommended = useMemo(() => buscarRepertorios(tema), [tema]); // Fuse (antigo)
 
   // ---------------
   // Teste FuseJS e MiniSearch (temporário)
   // troca o mecanismo de busca pra testar
-  const [searchMechanism, setSearchMechanism] = useState<
-    "MiniSearch" | "FuseJS (antigo)"
-  >("MiniSearch");
+  // const [searchMechanism, setSearchMechanism] = useState<
+  //   "MiniSearch" | "FuseJS (antigo)"
+  // >("MiniSearch");
 
-  const recommended = useMemo(
-    () =>
-      searchMechanism === "MiniSearch"
-        ? buscarRepertoriosMiniSearch(tema)
-        : buscarRepertorios(tema),
-    [tema, searchMechanism],
-  );
+  // const recommended = useMemo(
+  //   () =>
+  //     searchMechanism === "MiniSearch"
+  //       ? buscarRepertoriosMiniSearch(tema)
+  //       : buscarRepertorios(tema),
+  //   [tema, searchMechanism],
+  // );
   // ---------------
 
   const [selectedType, setSelectedType] = useState<
@@ -134,7 +134,7 @@ function RepertoriosContent() {
       </div>
       {/* --------------- */}
       {/* Temporario teste de mecanismmo de busca */}
-      <div className="flex justify-center">
+      {/* <div className="flex justify-center">
         <p
           className="cursor-pointer"
           onClick={() =>
@@ -145,7 +145,7 @@ function RepertoriosContent() {
         >
           debug: search_mechanism: {searchMechanism}
         </p>
-      </div>
+      </div> */}
       {/* --------------- */}
 
       <div className="grid gap-4 md:grid-cols-2 mt-6 theme-transition-off">
