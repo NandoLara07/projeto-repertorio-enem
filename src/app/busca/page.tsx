@@ -1,16 +1,42 @@
 "use client";
 
 import { ViewTransition } from "react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { ArrowUp } from "lucide-react";
+import { toast } from "sonner";
 import { Textarea } from "@/components/ui/textarea";
 import Header from "@/components/common/header";
+import MicButton from "@/components/common/mic-button";
 import { Button } from "@/components/ui/button";
+import { useSpeechRecognition } from "@/hooks/use-speech-recognition";
 
 export default function Busca() {
   const [EssayTheme, setEssayTheme] = useState("");
+  // Text that was already in the field when the microphone was turned on;
+  // what is spoken gets appended to it.
+  const textBeforeSpeechRef = useRef("");
+
+  const { supported, status, start, stop, abort } = useSpeechRecognition({
+    onTranscript: (transcript) =>
+      setEssayTheme(
+        [textBeforeSpeechRef.current.trimEnd(), transcript]
+          .filter(Boolean)
+          .join(" "),
+      ),
+    onError: (message) => toast.error(message, { position: "bottom-left" }),
+  });
+
+  const handleMicClick = () => {
+    if (status === "listening") {
+      stop();
+      return;
+    }
+    textBeforeSpeechRef.current = EssayTheme;
+    start();
+  };
 
   const handleSubmit = () => {
+    abort();
     window.location.href = `/repertorios?tema=${encodeURIComponent(EssayTheme.trim())}`;
   };
 
@@ -35,7 +61,11 @@ export default function Busca() {
                 aria-label="Tema da redação"
                 autoFocus
                 value={EssayTheme}
-                onChange={(e) => setEssayTheme(e.target.value)}
+                onChange={(e) => {
+                  // Typing takes over from the microphone.
+                  if (status === "listening") abort();
+                  setEssayTheme(e.target.value);
+                }}
                 onKeyDown={(e) => {
                   if (e.key === "Enter" && !e.shiftKey && EssayTheme.trim()) {
                     e.preventDefault();
@@ -45,6 +75,13 @@ export default function Busca() {
                 placeholder="Informe o tema..."
                 className="min-h-30 text-base resize-none rounded-xl pb-14 shadow-md"
               />
+              {supported && (
+                <MicButton
+                  status={status}
+                  onClick={handleMicClick}
+                  className="absolute bottom-3 right-14"
+                />
+              )}
               <button
                 type="button"
                 disabled={!EssayTheme.trim()}
