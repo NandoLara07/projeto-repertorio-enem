@@ -6,10 +6,13 @@ import { toast } from "sonner";
 import { Button } from "../ui/button";
 import { typeLabels } from "../ui/repertoriocard";
 import { Repertorio } from "@/types/repertorio";
+import { LOGO_ASPECT, drawLogo } from "@/lib/pdf-logo";
 
 const MARGIN = 15;
 const PAGE_WIDTH = 210;
 const CONTENT_WIDTH = PAGE_WIDTH - MARGIN * 2;
+const LOGO_HEIGHT = 8;
+const LOGO_GAP = 3;
 const PRIMARY_COLOR: [number, number, number] = [22, 101, 52];
 const BODY_COLOR: [number, number, number] = [30, 30, 30];
 const MUTED_COLOR: [number, number, number] = [100, 100, 100];
@@ -133,14 +136,19 @@ export default function DownloadPdfButton({
         if (line.length > 0) flushLine();
       };
 
+      const titleX = MARGIN + LOGO_HEIGHT * LOGO_ASPECT + LOGO_GAP;
+      // 18pt bold Helvetica: cap height is ~4.6mm, so its midline sits ~2.3mm
+      // above the baseline.
+      drawLogo(doc, MARGIN, y - 2.3 - LOGO_HEIGHT / 2, LOGO_HEIGHT);
+
       doc.setFont("helvetica", "bold");
       doc.setFontSize(18);
       doc.setTextColor(...PRIMARY_COLOR);
       const titleLines: string[] = doc.splitTextToSize(
         repertorio.title,
-        CONTENT_WIDTH,
+        PAGE_WIDTH - MARGIN - titleX,
       );
-      doc.text(titleLines, MARGIN, y);
+      doc.text(titleLines, titleX, y);
       y += titleLines.length * 7.5 + 2;
 
       const tags = [typeLabels[repertorio.type], repertorio.category];
