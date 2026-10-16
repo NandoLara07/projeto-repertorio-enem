@@ -90,7 +90,8 @@ function RepertoriosContent() {
             </h1>
           </div>
         )}
-        <p className="text-sm text-muted-foreground mt-2">
+        {/* Announces the new count to screen readers when the filter changes. */}
+        <p aria-live="polite" className="text-sm text-muted-foreground mt-2">
           {filtered.length == 1
             ? `${filtered.length} Repertório encontrado`
             : `${filtered.length} Repertórios encontrados`}
