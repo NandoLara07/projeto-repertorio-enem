@@ -25,7 +25,7 @@ export default function UsageExempleCard({
   return (
     <Card className="border-2 border-primary/30 bg-primary/5 py-4 px-2 dark:bg-[#0F161B]">
       <CardContent className="space-y-4">
-        <Carousel>
+        <Carousel aria-label="Exemplos de uso">
           <CarouselDots className="mb-3" />
           <div className="flex items-center gap-2">
             {repertorio.usageExample && (
@@ -81,7 +81,10 @@ export default function UsageExempleCard({
                           </div>
                         )}
                         <div className="w-full mt-5">
-                          <CopyButon textToCopy={usageTemplate} />
+                          <CopyButon
+                            textToCopy={usageTemplate}
+                            label="Copiar exemplo coringa"
+                          />
                         </div>
                       </div>
                     )}
@@ -105,7 +108,10 @@ export default function UsageExempleCard({
                         </CardContent>
                       </Card>
                       <div className="w-full mt-5">
-                        <CopyButon textToCopy={repertorio.usageExample[1]} />
+                        <CopyButon
+                          textToCopy={repertorio.usageExample[1]}
+                          label="Copiar exemplo de uso real"
+                        />
                       </div>
                     </div>
                   </CarouselItem>

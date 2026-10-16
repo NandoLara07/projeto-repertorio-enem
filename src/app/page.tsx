@@ -45,6 +45,7 @@ export default function Home() {
             muted
             playsInline
             disablePictureInPicture
+            aria-hidden="true"
             preload="auto"
             poster={backgroundPoster}
           >
@@ -77,7 +78,10 @@ export default function Home() {
           <ViewTransition name="search-textarea">
             <div className="w-full max-w-2xl relative text-left">
               {!value && (
-                <span className="absolute left-3 top-3 pointer-events-none text-gray-500">
+                <span
+                  aria-hidden="true"
+                  className="absolute left-3 top-3 pointer-events-none text-gray-500"
+                >
                   <Typewriter
                     component="div"
                     options={{
@@ -98,6 +102,7 @@ export default function Home() {
               )}
 
               <Textarea
+                aria-label="Tema da redação"
                 onFocus={goToSearch}
                 value={value}
                 onChange={(event) => setValue(event.target.value)}

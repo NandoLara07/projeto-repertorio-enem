@@ -83,6 +83,7 @@ export default async function RepertorioDetalhe({
               </div>
               <ExpandableText
                 text={repertorio.explanation}
+                label="Explicação"
                 className="text-foreground leading-relaxed dark:opacity-90"
               />
             </CardContent>
@@ -96,6 +97,7 @@ export default async function RepertorioDetalhe({
               </div>
               <ExpandableText
                 text={repertorio.essayUsage}
+                label="Como usar na redação"
                 className="text-foreground leading-relaxed dark:opacity-90"
               />
             </CardContent>

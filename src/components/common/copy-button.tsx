@@ -5,7 +5,13 @@ import { Button } from "../ui/button";
 import { Check, Copy } from "lucide-react";
 import { toast } from "sonner";
 
-export default function CopyButton({ textToCopy }: { textToCopy: string }) {
+interface CopyButtonProps {
+  textToCopy: string;
+  // Distinguishes this button from other "Copiar" buttons on the same page.
+  label?: string;
+}
+
+export default function CopyButton({ textToCopy, label }: CopyButtonProps) {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
@@ -22,7 +28,13 @@ export default function CopyButton({ textToCopy }: { textToCopy: string }) {
   };
 
   return (
-    <Button className="w-full" onClick={handleCopy} disabled={copied}>
+
+    <Button
+      className="w-full"
+      aria-label={copied ? undefined : label}
+      onClick={handleCopy}
+      disabled={copied}
+    >
       {copied ? (
         <>
           <Check />

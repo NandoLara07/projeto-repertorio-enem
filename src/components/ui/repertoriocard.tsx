@@ -73,18 +73,22 @@ export const RepertorioCard = ({
 }: RepertorioCardProps) => {
   return (
     <Card
-      className="cursor-pointer hover:shadow-lg transition-all duration-400 hover:-translate-y-1 card-in border-border/60 dark:bg-[#0F161B] dark:border-[#1C2731]"
+      className="relative cursor-pointer hover:shadow-lg transition-all duration-400 hover:-translate-y-1 card-in border-border/60 dark:bg-[#0F161B] dark:border-[#1C2731] has-[a:focus-visible]:ring-2 has-[a:focus-visible]:ring-ring"
       style={{ animationDelay: `${index * 80}ms` }}
-      onClick={() => {
-        window.location.href = `/repertorios/${encodeURIComponent(repertorio.id)}`;
-      }}
     >
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between gap-2">
           <div className="flex items-center gap-2">
             <span className="text-primary">{typeIcons[repertorio.type]}</span>
             <h3 className="font-semibold text-card-foreground leading-tight">
-              {repertorio.title}
+              {/* The ::after stretches the link over the whole card, which
+                  keeps the card fully clickable with a single, named link. */}
+              <a
+                href={`/repertorios/${encodeURIComponent(repertorio.id)}`}
+                className="outline-none [-webkit-tap-highlight-color:transparent] after:absolute after:inset-0"
+              >
+                {repertorio.title}
+              </a>
             </h3>
           </div>
           {relevance && (

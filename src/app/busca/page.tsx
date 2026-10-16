@@ -32,6 +32,7 @@ export default function Busca() {
           <ViewTransition name="search-textarea">
             <div className="relative w-full max-w-2xl">
               <Textarea
+                aria-label="Tema da redação"
                 autoFocus
                 value={EssayTheme}
                 onChange={(e) => setEssayTheme(e.target.value)}
@@ -48,6 +49,7 @@ export default function Busca() {
                 type="button"
                 disabled={!EssayTheme.trim()}
                 onClick={handleSubmit}
+                aria-label="Buscar repertório"
                 className="absolute bottom-3 right-3 flex h-9 w-9 items-center justify-center rounded-full bg-primary text-primary-foreground transition-opacity hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-50"
               >
                 <ArrowUp className="h-5 w-5" />

@@ -9,12 +9,12 @@ export const Header = () => {
     >
       <Link
         href="/"
+        aria-label="Repertór.io, página inicial"
         className="flex h-full items-center gap-2 py-2 hover:opacity-80 transition-opacity"
       >
         <svg
           viewBox="0 0 320 360"
-          role="img"
-          aria-label="Logo Repertór.io"
+          aria-hidden="true"
           className="h-full aspect-square text-[#101D17] dark:text-white"
         >
           <path

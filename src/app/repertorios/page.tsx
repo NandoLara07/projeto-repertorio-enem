@@ -20,7 +20,7 @@ import {
   typeIcons,
 } from "@/components/ui/repertoriocard";
 import { Repertorio } from "@/types/repertorio";
-import { buscarRepertorios } from "@/lib/busca-repertorios";
+//import { buscarRepertorios } from "@/lib/busca-repertorios";
 import { buscarRepertoriosMiniSearch } from "@/lib/busca-minisearch";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
@@ -106,7 +106,10 @@ function RepertoriosContent() {
                 setSelectedType(value as Repertorio["type"] | "todos")
               }
             >
-              <SelectTrigger className="w-56">
+              <SelectTrigger
+                className="w-56"
+                aria-label="Filtrar por tipo de repertório"
+              >
                 <SelectValue placeholder="Filtrar por tipo" />
               </SelectTrigger>
               <SelectContent alignItemWithTrigger={false}>
@@ -125,6 +128,7 @@ function RepertoriosContent() {
                 size="sm"
                 onClick={() => setSelectedType("todos")}
                 className="text-red-500 hover:text-red-600 hover:bg-red-500/10"
+                aria-label="Remover filtro"
               >
                 <X /> Limpar
               </Button>
@@ -185,6 +189,7 @@ function RepertoriosContent() {
                 repertorio={repertorio}
                 index={index}
                 relevance={item.relevance}
+                aria-label={`Abrir repertório ${repertorio.title}`}
               />
             );
           })

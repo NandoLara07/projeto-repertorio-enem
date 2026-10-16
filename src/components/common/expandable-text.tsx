@@ -7,9 +7,15 @@ import { cn } from "@/lib/utils";
 interface ExpandableTextProps {
   text: string;
   className?: string;
+  // Names the section, so several "Ver mais" buttons on a page can be told apart.
+  label?: string;
 }
 
-export function ExpandableText({ text, className }: ExpandableTextProps) {
+export function ExpandableText({
+  text,
+  className,
+  label,
+}: ExpandableTextProps) {
   const [expanded, setExpanded] = useState(false);
   const [isClamped, setIsClamped] = useState(false);
   const textRef = useRef<HTMLParagraphElement>(null);
@@ -45,6 +51,12 @@ export function ExpandableText({ text, className }: ExpandableTextProps) {
           variant="link"
           size="sm"
           className="px-0 h-auto mt-1"
+          aria-expanded={expanded}
+          aria-label={
+            label
+              ? `${expanded ? "Ver menos" : "Ver mais"}: ${label}`
+              : undefined
+          }
           onClick={() => setExpanded((prev) => !prev)}
         >
           {expanded ? "Ver menos" : "Ver mais"}
