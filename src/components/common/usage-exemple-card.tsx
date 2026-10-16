@@ -35,10 +35,10 @@ export default function UsageExempleCard({
               <CarouselContent>
                 <CarouselItem className="p-6 flex items-center">
                   <div>
-                    <div className="flex items-center gap-2 text-primary font-bold text-lg mb-3">
+                    <h2 className="flex items-center gap-2 text-primary font-bold text-lg mb-3">
                       <PenLine className="h-5 w-5" />
                       Exemplo de {repertorio.bestFor} coringa
-                    </div>
+                    </h2>
                     <Card>
                       <CardContent>
                         <p className="text-foreground leading-relaxed text-sm whitespace-pre-line">
@@ -93,10 +93,10 @@ export default function UsageExempleCard({
                 {repertorio.usageExample && (
                   <CarouselItem className="p-6">
                     <div>
-                      <div className="flex items-center gap-2 text-primary font-bold text-lg mb-3">
+                      <h2 className="flex items-center gap-2 text-primary font-bold text-lg mb-3">
                         <PenLine className="h-5 w-5" />
                         Exemplo de uso real
-                      </div>
+                      </h2>
                       <div className="w-full flex justify-center font-bold mb-2">
                         {repertorio.usageExample[0]}
                       </div>

@@ -51,6 +51,8 @@
 html {
   scrollbar-width: thin;
   scrollbar-gutter: stable;
+  /* Keeps keyboard focus from landing behind the fixed header. */
+  scroll-padding-top: calc(var(--header-height) + 1rem);
 }
 
 html.no-scrollbar-gutter {
@@ -145,6 +147,7 @@ html.no-scrollbar-gutter {
   --chart-4: #86efac;
   --chart-5: #bbf7d0;
   --radius: 0.625rem;
+  --header-height: 4.5rem;
   --sidebar: #f1f7f3;
   --sidebar-foreground: #17201a;
   --sidebar-primary: #166534;

@@ -39,6 +39,13 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+          {/* Only shows up when it receives keyboard focus (first Tab). */}
+          <a
+            href="#conteudo"
+            className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-60 focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-primary-foreground"
+          >
+            Pular para o conteúdo
+          </a>
           <ScrollbarGutterController />
           {children}
           <div className="fixed">

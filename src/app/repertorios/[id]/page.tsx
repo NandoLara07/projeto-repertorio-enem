@@ -37,7 +37,11 @@ export default async function RepertorioDetalhe({
     return (
       <div className="min-h-screen flex flex-col">
         <Header />
-        <main className="flex-1 flex items-center justify-center pt-[9dvh]">
+        <main
+          id="conteudo"
+          tabIndex={-1}
+          className="flex-1 flex items-center justify-center pt-(--header-height) outline-none"
+        >
           <div className="text-center space-y-4">
             <p className="text-lg font-medium text-foreground">
               Repertório não encontrado
@@ -53,7 +57,11 @@ export default async function RepertorioDetalhe({
     <div className="min-h-screen flex flex-col">
       <Header />
 
-      <main className="flex-1 px-6 py-8 pt-[calc(9dvh+2rem)]">
+      <main
+        id="conteudo"
+        tabIndex={-1}
+        className="flex-1 px-6 py-8 pt-[calc(var(--header-height)+2rem)] outline-none"
+      >
         <div className="max-w-3xl mx-auto space-y-8 fade-in">
           <div className="flex items-center justify-between">
             <BackButton />
@@ -89,10 +97,10 @@ export default async function RepertorioDetalhe({
 
           <Card className="dark:bg-[#0F161B]">
             <CardContent className="space-y-3">
-              <div className="flex items-center gap-2 text-primary font-semibold">
+              <h2 className="flex items-center gap-2 text-primary font-semibold">
                 <FileText className="h-5 w-5" />
                 Explicação
-              </div>
+              </h2>
               <ExpandableText
                 text={repertorio.explanation}
                 label="Explicação"
@@ -103,10 +111,10 @@ export default async function RepertorioDetalhe({
 
           <Card className="border-primary/20 bg-accent/30">
             <CardContent className="space-y-3">
-              <div className="flex items-center gap-2 text-primary font-semibold">
+              <h2 className="flex items-center gap-2 text-primary font-semibold">
                 <MessageSquareQuote className="h-5 w-5" />
                 Como usar na redação
-              </div>
+              </h2>
               <ExpandableText
                 text={repertorio.essayUsage}
                 label="Como usar na redação"

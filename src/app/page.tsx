@@ -34,9 +34,9 @@ export default function Home() {
     : "/background/light/background-light-poster.png";
 
   return (
-    <div className="fixed inset-0 overflow-hidden">
+    <div className="relative isolate min-h-dvh">
       <ViewTransition exit="fade-out" default="none">
-        <div className="absolute inset-0 -z-10 overflow-hidden">
+        <div className="fixed inset-0 -z-10 overflow-hidden">
           <video
             key={isDark ? "dark" : "light"}
             className="h-full w-full object-cover object-bottom"
@@ -55,10 +55,11 @@ export default function Home() {
         </div>
       </ViewTransition>
 
-      <main className="relative z-10 h-full overflow-hidden">
-        <Header />
+      <Header />
 
-        <div className="flex h-full flex-col items-center justify-center gap-4 px-4 text-center">
+      <main id="conteudo" tabIndex={-1} className="relative z-10 outline-none">
+
+        <div className="flex min-h-dvh flex-col items-center justify-center gap-4 px-4 py-(--header-height) text-center">
           <ViewTransition exit="fade-out" default="none">
             <div className="max-w-2xl text-center space-y-8 fade-in">
               <h1 className="text-4xl md:text-5xl font-extrabold text-foreground leading-tight tracking-tight">

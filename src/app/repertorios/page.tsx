@@ -204,7 +204,11 @@ export default function Repertorios() {
     <div className="min-h-screen flex flex-col">
       <Header />
 
-      <main className="flex-1 px-6 py-8 pt-[calc(9dvh+2rem)]">
+      <main
+        id="conteudo"
+        tabIndex={-1}
+        className="flex-1 px-6 py-8 pt-[calc(var(--header-height)+2rem)] outline-none"
+      >
         <div className="max-w-5xl mx-auto space-y-6 fade-in">
           <div>
             <Button

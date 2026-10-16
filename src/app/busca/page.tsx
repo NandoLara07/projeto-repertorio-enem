@@ -41,11 +41,12 @@ export default function Busca() {
   };
 
   return (
-    <div className="fixed inset-0 overflow-hidden bg-background">
-      <main className="relative z-10 h-full overflow-hidden">
-        <Header />
+    <div className="relative min-h-dvh bg-background">
+      <Header />
 
-        <div className="flex h-full flex-col items-center justify-center gap-4 px-4 text-center">
+      <main id="conteudo" tabIndex={-1} className="relative z-10 outline-none">
+
+        <div className="flex min-h-dvh flex-col items-center justify-center gap-4 px-4 py-(--header-height) text-center">
           <div className="text-center space-y-2 fade-in">
             <h1 className="text-3xl font-bold text-foreground">
               Qual é o tema da redação?

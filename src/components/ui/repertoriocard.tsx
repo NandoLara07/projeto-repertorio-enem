@@ -80,7 +80,7 @@ export const RepertorioCard = ({
         <div className="flex items-start justify-between gap-2">
           <div className="flex items-center gap-2">
             <span className="text-primary">{typeIcons[repertorio.type]}</span>
-            <h3 className="font-semibold text-card-foreground leading-tight">
+            <h2 className="font-semibold text-card-foreground leading-tight">
               {/* The ::after stretches the link over the whole card, which
                   keeps the card fully clickable with a single, named link. */}
               <a
@@ -89,7 +89,7 @@ export const RepertorioCard = ({
               >
                 {repertorio.title}
               </a>
-            </h3>
+            </h2>
           </div>
           {relevance && (
             <Badge
