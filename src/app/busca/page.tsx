@@ -5,16 +5,13 @@ import { useState } from "react";
 import { ArrowUp } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 import Header from "@/components/common/header";
-import { asset } from "@/lib/paths";
 import { Button } from "@/components/ui/button";
 
 export default function Busca() {
   const [EssayTheme, setEssayTheme] = useState("");
 
   const handleSubmit = () => {
-    window.location.href = asset(
-      `/repertorios?tema=${encodeURIComponent(EssayTheme.trim())}`,
-    );
+    window.location.href = `/repertorios?tema=${encodeURIComponent(EssayTheme.trim())}`;
   };
 
   return (
@@ -70,7 +67,7 @@ export default function Busca() {
                 <Button
                   className="mt-3 pr-2 pl-2 pt-5 pb-5 text-xs shadow-md"
                   onClick={() =>
-                    (window.location.href = asset("/repertorios?tema=@all"))
+                    (window.location.href = "/repertorios?tema=@all")
                   }
                 >
                   SELECIONAR TODOS

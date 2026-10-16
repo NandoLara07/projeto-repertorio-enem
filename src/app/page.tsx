@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 import { Textarea } from "@/components/ui/textarea";
 import Header from "@/components/common/header";
 import Typewriter from "typewriter-effect";
-import { asset } from "@/lib/paths";
 import { useTheme } from "next-themes";
 import { useIsClient } from "@/hooks/use-is-client";
 
@@ -23,16 +22,16 @@ export default function Home() {
   const isDark = isClient && resolvedTheme === "dark";
 
   const backgroundWebm = isDark
-    ? asset("/background/dark/background-dark.webm")
-    : asset("/background/light/background-light.webm");
+    ? "/background/dark/background-dark.webm"
+    : "/background/light/background-light.webm";
 
   const backgroundMp4 = isDark
-    ? asset("/background/dark/background-dark.mp4")
-    : asset("/background/light/background-light.mp4");
+    ? "/background/dark/background-dark.mp4"
+    : "/background/light/background-light.mp4";
 
   const backgroundPoster = isDark
-    ? asset("/background/dark/background-dark-poster.png")
-    : asset("/background/light/background-light-poster.png");
+    ? "/background/dark/background-dark-poster.png"
+    : "/background/light/background-light-poster.png";
 
   return (
     <div className="fixed inset-0 overflow-hidden">

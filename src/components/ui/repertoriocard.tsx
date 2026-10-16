@@ -16,7 +16,6 @@ import {
 } from "lucide-react";
 import { Repertorio } from "@/types/repertorio";
 import { Relevance } from "@/lib/busca-repertorios";
-import { asset } from "@/lib/paths";
 
 export const relevanceLabels: Record<Relevance, string> = {
   "muito-relevante": "Muito relevante",
@@ -77,9 +76,7 @@ export const RepertorioCard = ({
       className="cursor-pointer hover:shadow-lg transition-all duration-400 hover:-translate-y-1 card-in border-border/60 dark:bg-[#0F161B] dark:border-[#1C2731]"
       style={{ animationDelay: `${index * 80}ms` }}
       onClick={() => {
-        window.location.href = asset(
-          `/repertorios/${encodeURIComponent(repertorio.id)}`,
-        );
+        window.location.href = `/repertorios/${encodeURIComponent(repertorio.id)}`;
       }}
     >
       <CardHeader className="pb-3">
