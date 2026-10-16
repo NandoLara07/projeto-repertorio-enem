@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { RepertoriosData } from "@/db/repertorios";
 import { typeLabels } from "@/components/ui/repertoriocard";
 import Header from "@/components/common/header";
@@ -11,6 +12,17 @@ import { FileText, MessageSquareQuote, Tag, Target } from "lucide-react";
 
 export async function generateStaticParams() {
   return RepertoriosData.map((r) => ({ id: r.id }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> {
+  const { id } = await params;
+  const repertorio = RepertoriosData.find((r) => r.id === id);
+
+  return { title: repertorio?.title ?? "Repertório não encontrado" };
 }
 
 export default async function RepertorioDetalhe({

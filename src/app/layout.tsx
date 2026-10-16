@@ -16,7 +16,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Repertór.io",
+  title: {
+    default: "Repertór.io",
+    template: "%s | Repertór.io",
+  },
   description: "Não sabe qual repertório usar na redação? Nós te ajudamos!",
   icons: {
     icon: "/icon/icon.ico",
