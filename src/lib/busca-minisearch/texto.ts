@@ -2,10 +2,6 @@ import { newStemmer } from "snowball-stemmers";
 
 const stemmer = newStemmer("portuguese");
 
-// Palavras gramaticais (artigos, preposições, pronomes, conjunções, verbos de
-// ligação...) e de construção de frase ("como forma de", "por meio de").
-// Escritas sem acento porque a comparação ignora acentos: "não" e "nao" caem do
-// mesmo jeito. A comparação é pela palavra inteira: "forma" sai, "formação" não.
 const PALAVRAS_VAZIAS = new Set(
   `a o as os um uma uns umas ao aos
   de do da dos das dum duma duns dumas em no na nos nas num numa nuns numas
@@ -32,9 +28,7 @@ const PALAVRAS_VAZIAS = new Set(
   seriam sendo sido estar estou estamos estao estava estavam esteve estiveram
   estando ter tenho tem temos tinha tinham tive teve tiveram tera terao teria
   teriam tendo tido haver ha havia houve houveram havera pode podem deve devem
-  fazer`.split(
-    /\s+/,
-  ),
+  fazer`.split(/\s+/),
 );
 
 // Moldura: palavras que aparecem em quase todo tema de redação e não ajudam a
@@ -54,13 +48,13 @@ const MOLDURA = [
 ];
 
 // "País" fica fora da comparação por radical: sem acento ele vira "pais", e
-// aí "responsabilidade dos pais" também sumiria.
+// aí "responsabilidade dos pais" também sumiria
 const PAIS = new Set(["país", "países", "paises"]);
 
 // Moldura ambígua: geralmente é só enquadramento ("a importância de...",
 // "o acesso a...") ou o lugar onde o problema acontece ("em ambientes
 // virtuais", "apostas online"), mas às vezes faz parte do assunto. Em vez de
-// remover, essas palavras entram com peso baixo.
+// remover, essas palavras entram com peso baixo
 const MOLDURA_FRACA = [
   "ambiente",
   "online",
@@ -150,7 +144,7 @@ function singularizar(palavra: string): string {
 }
 
 // O stemmer depende do acento pra reconhecer sufixos ("-ção"), então o acento
-// só sai depois.
+// só sai dps
 function radical(palavra: string): string {
   // Variações da sigla (LGBT, LGBTI+, LGBTQIA+, LGBTQIAPN+) viram o mesmo termo.
   if (/^lgbt[qiapn]*$/.test(normalizar(palavra))) return "lgbt";

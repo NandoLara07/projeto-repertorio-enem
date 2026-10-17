@@ -19,8 +19,6 @@ export default function NotFound() {
         tabIndex={-1}
         className="flex flex-1 flex-col items-center justify-center gap-6 px-6 pt-[calc(var(--header-height)+2rem)] pb-12 text-center outline-none fade-in"
       >
-        {/* Same artwork as public/404_page_logo.svg, inlined so the R follows
-            the theme (dark on light, white on dark / accessibility mode). */}
         <svg
           viewBox="0 0 320 360"
           aria-hidden="true"
