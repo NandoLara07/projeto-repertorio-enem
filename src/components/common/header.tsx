@@ -1,5 +1,6 @@
 import Link from "next/link";
 import ThemeSwitcher from "../ui/theme-switcher";
+import AccessibilityControls from "./accessibility-controls";
 
 export const Header = () => {
   return (
@@ -15,7 +16,9 @@ export const Header = () => {
         <svg
           viewBox="0 0 320 360"
           aria-hidden="true"
-          className="h-full aspect-square text-[#101D17] dark:text-white"
+          // max-h in px: with a bigger text size the logo stays put and leaves
+          // room for the zoom buttons on narrow screens.
+          className="h-full max-h-[56px] aspect-square text-[#101D17] dark:text-white accessibility:text-white"
         >
           <path
             fill="currentColor"
@@ -25,7 +28,10 @@ export const Header = () => {
         </svg>
       </Link>
 
-      <ThemeSwitcher />
+      <div className="flex items-center gap-1">
+        <AccessibilityControls />
+        <ThemeSwitcher />
+      </div>
     </header>
   );
 };

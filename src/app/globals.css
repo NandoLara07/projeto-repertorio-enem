@@ -3,6 +3,8 @@
 @import "shadcn/tailwind.css";
 
 @custom-variant dark (&:is(.dark *));
+/* Declared after `dark`, so its utilities win when both apply. */
+@custom-variant accessibility (&:is(.accessibility *));
 
 @theme inline {
   --color-background: var(--background);
@@ -224,6 +226,146 @@ html.no-scrollbar-gutter {
   --sidebar-accent-foreground: #d9fbe5;
   --sidebar-border: #2b3831;
   --sidebar-ring: #4ade80;
+}
+
+/* ================= Accessibility mode (high contrast) =================
+   Turned on by the button next to the theme switcher (class on <html>).
+   Pure black background, white text, yellow controls with black text.
+   The rules below are outside any @layer on purpose: they must beat the
+   components' own utility classes (hover colors, red buttons, shadows...). */
+
+.accessibility {
+  /* next-themes sets color-scheme inline; keep scrollbars and native
+     controls dark on the black background. */
+  color-scheme: dark !important;
+  --background: #000000;
+  --foreground: #ffffff;
+  --card: #000000;
+  --card-foreground: #ffffff;
+  --popover: #000000;
+  --popover-foreground: #ffffff;
+  --primary: #ffff00;
+  --primary-foreground: #000000;
+  --secondary: #000000;
+  --secondary-foreground: #ffffff;
+  --muted: #000000;
+  --muted-foreground: #ffffff;
+  --accent: #000000;
+  --accent-foreground: #ffffff;
+  --destructive: #ff5c5c;
+  --border: #ffffff;
+  --input: #ffffff;
+  --ring: #ffff00;
+  --chart-1: #ffff00;
+  --chart-2: #ffffff;
+  --chart-3: #ffff00;
+  --chart-4: #ffffff;
+  --chart-5: #ffff00;
+  --sidebar: #000000;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #ffff00;
+  --sidebar-primary-foreground: #000000;
+  --sidebar-accent: #000000;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #ffffff;
+  --sidebar-ring: #ffff00;
+}
+
+/* Tinted boxes and chips (tip box, theme chips, placeholders) lose their
+   tint on black, so they get a white border instead. */
+.accessibility
+  :is([class*="bg-accent"], [class*="bg-muted"], [class*="bg-primary/"]):not(
+    [data-slot]
+  ) {
+  border: 1px solid var(--foreground);
+}
+
+/* Every button: yellow with black text (link-style buttons and the carousel
+   dots are handled separately below). */
+.accessibility
+  :is([data-slot="button"], [data-slot="select-trigger"], main button):not(
+    .underline-offset-4,
+    [data-slot="carousel-dots"] *
+  ) {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  border: 2px solid var(--primary);
+}
+.accessibility
+  :is([data-slot="button"], [data-slot="select-trigger"], main button):not(
+    .underline-offset-4,
+    [data-slot="carousel-dots"] *
+  )
+  * {
+  color: inherit;
+}
+.accessibility
+  :is([data-slot="button"], [data-slot="select-trigger"], main button):not(
+    .underline-offset-4,
+    [data-slot="carousel-dots"] *,
+    :disabled,
+    [aria-disabled="true"]
+  ):hover {
+  background-color: var(--foreground);
+  border-color: var(--foreground);
+}
+
+/* Link-style buttons ("Ver mais") stay text: yellow and underlined. */
+.accessibility main button.underline-offset-4 {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+/* Carousel dots: bigger targets (24px) — filled when current. */
+.accessibility [data-slot="carousel-dots"] button {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 9999px;
+  background-color: transparent;
+  border: 2px solid var(--primary);
+}
+.accessibility [data-slot="carousel-dots"] button[aria-current="true"] {
+  background-color: var(--primary);
+}
+
+/* Cards: black with a solid white border; shadows don't show on black. */
+.accessibility [data-slot="card"] {
+  background-color: var(--card);
+  border: 2px solid var(--foreground);
+  box-shadow: none;
+}
+
+/* Badges wrap: with bigger text, a long one would push the card off-screen. */
+.accessibility [data-slot="badge"] {
+  background-color: var(--background);
+  color: var(--foreground);
+  border: 1px solid var(--foreground);
+  height: auto;
+  max-width: 100%;
+  white-space: normal;
+}
+
+/* Filter menu: outlined popup, highlighted option in yellow. */
+.accessibility [data-slot="select-content"] {
+  border: 2px solid var(--foreground);
+}
+.accessibility [data-slot="select-item"]:is(:focus, [data-highlighted]) {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+.accessibility [data-slot="select-item"]:is(:focus, [data-highlighted]) * {
+  color: inherit;
+}
+
+/* One thick, solid focus indicator for everything. The card shows it around
+   the whole card; the <main> that receives the skip link needs none. */
+.accessibility :focus-visible:not(main, [data-slot="card"] a) {
+  outline: 3px solid var(--ring);
+  outline-offset: 2px;
+}
+.accessibility [data-slot="card"]:has(a:focus-visible) {
+  outline: 3px solid var(--ring);
+  outline-offset: 2px;
 }
 
 @layer base {

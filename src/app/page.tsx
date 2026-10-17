@@ -8,12 +8,14 @@ import Header from "@/components/common/header";
 import Typewriter from "typewriter-effect";
 import { useTheme } from "next-themes";
 import { useIsClient } from "@/hooks/use-is-client";
+import { useAccessibility } from "@/hooks/use-accessibility";
 
 export default function Home() {
   const router = useRouter();
   const [value, setValue] = useState("");
   const { resolvedTheme } = useTheme();
   const isClient = useIsClient();
+  const { enabled: accessibility } = useAccessibility();
 
   const goToSearch = () => {
     router.push("/busca", { transitionTypes: ["nav-forward"] });
@@ -35,25 +37,34 @@ export default function Home() {
 
   return (
     <div className="relative isolate min-h-dvh">
-      <ViewTransition exit="fade-out" default="none">
-        <div className="fixed inset-0 -z-10 overflow-hidden">
-          <video
-            key={isDark ? "dark" : "light"}
-            className="h-full w-full object-cover object-bottom"
-            autoPlay
-            loop
-            muted
-            playsInline
-            disablePictureInPicture
-            aria-hidden="true"
-            preload="auto"
-            poster={backgroundPoster}
-          >
-            <source src={backgroundWebm} type="video/webm" />
-            <source src={backgroundMp4} type="video/mp4" />
-          </video>
-        </div>
-      </ViewTransition>
+      {/* No background video in accessibility mode. The server HTML can't know
+          the mode, so it only carries the poster (hidden by CSS in the mode);
+          the video files are added once the page knows the mode is off. */}
+      {!accessibility && (
+        <ViewTransition exit="fade-out" default="none">
+          <div className="fixed inset-0 -z-10 overflow-hidden accessibility:hidden">
+            <video
+              key={isDark ? "dark" : "light"}
+              className="h-full w-full object-cover object-bottom"
+              autoPlay
+              loop
+              muted
+              playsInline
+              disablePictureInPicture
+              aria-hidden="true"
+              preload="auto"
+              poster={backgroundPoster}
+            >
+              {isClient && (
+                <>
+                  <source src={backgroundWebm} type="video/webm" />
+                  <source src={backgroundMp4} type="video/mp4" />
+                </>
+              )}
+            </video>
+          </div>
+        </ViewTransition>
+      )}
 
       <Header />
 
@@ -81,7 +92,7 @@ export default function Home() {
               {!value && (
                 <span
                   aria-hidden="true"
-                  className="absolute left-3 top-3 pointer-events-none text-gray-500"
+                  className="absolute left-3 top-3 pointer-events-none text-gray-500 accessibility:text-white"
                 >
                   <Typewriter
                     component="div"

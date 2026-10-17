@@ -4,6 +4,7 @@ import "./globals.css";
 import ThemeProvider from "@/providers/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import ScrollbarGutterController from "@/components/common/scrollbar-gutter-controller";
+import { accessibilityInitScript } from "@/lib/accessibility";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,6 +39,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <script dangerouslySetInnerHTML={{ __html: accessibilityInitScript }} />
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           {/* Only shows up when it receives keyboard focus (first Tab). */}
           <a

@@ -63,7 +63,7 @@ export default async function RepertorioDetalhe({
         className="flex-1 px-6 py-8 pt-[calc(var(--header-height)+2rem)] outline-none"
       >
         <div className="max-w-3xl mx-auto space-y-8 fade-in">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-wrap items-center justify-between gap-3">
             <BackButton />
             <DownloadPdfButton repertorio={repertorio} />
           </div>
