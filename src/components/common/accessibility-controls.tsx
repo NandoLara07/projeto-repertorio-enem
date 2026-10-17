@@ -17,12 +17,13 @@ export default function AccessibilityControls() {
   const isMax = index === ZOOM_STEPS.length - 1;
 
   return (
-    <div className="flex items-center gap-1">
+    // Gaps in px, like the header: they shouldn't grow with the text size.
+    <div className="flex items-center gap-[4px]">
       {enabled && (
         <div
           role="group"
           aria-label="Tamanho do texto"
-          className="flex items-center gap-1"
+          className="flex items-center gap-[4px]"
         >
           {/* focusableWhenDisabled: reaching a limit must not drop keyboard focus. */}
           <Button

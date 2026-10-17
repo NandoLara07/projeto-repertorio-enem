@@ -6,7 +6,7 @@ export const Header = () => {
   return (
     <header
       style={{ viewTransitionName: "site-header" }}
-      className="fixed top-0 left-0 right-0 z-50 flex h-(--header-height) w-full items-center justify-between border-b border-border bg-background px-4"
+      className="fixed top-0 left-0 right-0 z-50 flex h-(--header-height) w-full items-center justify-between border-b border-border bg-background px-[16px]"
     >
       <Link
         href="/"
@@ -28,7 +28,9 @@ export const Header = () => {
         </svg>
       </Link>
 
-      <div className="flex items-center gap-1">
+      {/* Padding and gaps in px (same as 1rem / 0.25rem at normal size) so a
+          bigger text size doesn't push the buttons off narrow screens. */}
+      <div className="flex items-center gap-[4px]">
         <AccessibilityControls />
         <ThemeSwitcher />
       </div>
