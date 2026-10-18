@@ -115,8 +115,6 @@ Um mesmo repertório pode pertencer a mais de um eixo, o que amplia as chances d
 
 ## Acessibilidade
 
-A acessibilidade foi tratada como parte do projeto, e não como detalhe:
-
 - **Modo de acessibilidade** (botão ao lado do tema):
   - fundo preto puro, texto branco e botões amarelos com texto preto, todos com contraste
   - o vídeo de fundo da página inicial é desligado;
