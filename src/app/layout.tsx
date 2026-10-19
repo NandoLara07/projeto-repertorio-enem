@@ -6,6 +6,7 @@ import ThemeProvider from "@/providers/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import ScrollbarGutterController from "@/components/common/scrollbar-gutter-controller";
 import { accessibilityInitScript } from "@/lib/accessibility";
+import { SITE_DESCRIPTION, SITE_URL } from "@/lib/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,11 +19,21 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Repertór.io",
     template: "%s | Repertór.io",
   },
-  description: "Não sabe qual repertório usar na redação? Nós te ajudamos!",
+  description: SITE_DESCRIPTION,
+  // Inherited by routes that don't set their own, so each layout/page overrides it.
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    locale: "pt_BR",
+    siteName: "Repertór.io",
+    title: "Repertór.io",
+    description: SITE_DESCRIPTION,
+  },
   icons: {
     icon: "/icon/icon.ico",
   },
@@ -42,9 +53,11 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <script dangerouslySetInnerHTML={{ __html: accessibilityInitScript }} />
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-          {/* Only shows up when it receives keyboard focus (first Tab). */}
+          {/* Only shows up when it receives keyboard focus (first Tab).
+              data-nosnippet keeps it out of Google's result snippet. */}
           <a
             href="#conteudo"
+            data-nosnippet
             className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-60 focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-primary-foreground"
           >
             Pular para o conteúdo

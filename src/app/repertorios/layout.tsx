@@ -7,6 +7,7 @@ export const metadata: Metadata = {
     default: "Repertórios",
     template: "%s | Repertór.io",
   },
+  alternates: { canonical: "/repertorios" },
 };
 
 export default function RepertoriosLayout({

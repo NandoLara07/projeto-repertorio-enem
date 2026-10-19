@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Página não encontrada",
+  alternates: { canonical: null },
 };
 
 export default function NotFound() {

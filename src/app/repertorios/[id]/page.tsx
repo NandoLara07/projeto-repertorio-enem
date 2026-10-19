@@ -22,7 +22,17 @@ export async function generateMetadata({
   const { id } = await params;
   const repertorio = RepertoriosData.find((r) => r.id === id);
 
-  return { title: repertorio?.title ?? "Repertório não encontrado" };
+  if (!repertorio) return { title: "Repertório não encontrado" };
+
+  return {
+    title: repertorio.title,
+    description: repertorio.explanation,
+    alternates: { canonical: `/repertorios/${repertorio.id}` },
+    openGraph: {
+      title: repertorio.title,
+      description: repertorio.explanation,
+    },
+  };
 }
 
 export default async function RepertorioDetalhe({
