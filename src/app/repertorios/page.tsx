@@ -19,7 +19,7 @@ import {
   typeLabels,
   typeIcons,
 } from "@/components/ui/repertoriocard";
-import { Repertorio } from "@/types/repertorio";
+import { EixoTematico, Repertorio } from "@/types/repertorio";
 //import { buscarRepertorios } from "@/lib/busca-repertorios";
 import { buscarRepertoriosMiniSearch } from "@/lib/busca-minisearch";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
@@ -29,6 +29,16 @@ const allTypes = Object.keys(typeLabels) as Repertorio["type"][];
 const selectItems: Record<Repertorio["type"] | "todos", string> = {
   todos: "Todos os tipos",
   ...typeLabels,
+};
+
+// Só os eixos que têm pelo menos um repertório cadastrado
+const allEixos = Array.from(
+  new Set(RepertoriosData.flatMap((r) => r.eixoTematico)),
+).sort((a, b) => a.localeCompare(b, "pt-BR"));
+
+const eixoSelectItems: Record<string, string> = {
+  todos: "Todos os eixos",
+  ...Object.fromEntries(allEixos.map((eixo) => [eixo, eixo])),
 };
 
 function RepertoriosContent() {
@@ -60,21 +70,35 @@ function RepertoriosContent() {
     Repertorio["type"] | "todos"
   >("todos");
 
-  const filtered =
-    selectedType === "todos"
-      ? recommended
-      : recommended.filter(
-          (item) =>
-            RepertoriosData.find((r) => r.id === item.id)?.type ===
-            selectedType,
-        );
+  const [selectedEixo, setSelectedEixo] = useState<EixoTematico | "todos">(
+    "todos",
+  );
 
-  const hasFilters = selectedType !== "todos";
+  const isAll = tema === "@all";
+  // O filtro de eixo só existe na página de todos os repertórios
+  const activeEixo = isAll ? selectedEixo : "todos";
+
+  const filtered = recommended.filter((item) => {
+    const repertorio = RepertoriosData.find((r) => r.id === item.id);
+    if (!repertorio) return false;
+    if (selectedType !== "todos" && repertorio.type !== selectedType)
+      return false;
+    if (activeEixo !== "todos" && !repertorio.eixoTematico.includes(activeEixo))
+      return false;
+    return true;
+  });
+
+  const hasFilters = selectedType !== "todos" || activeEixo !== "todos";
+
+  const clearFilters = () => {
+    setSelectedType("todos");
+    setSelectedEixo("todos");
+  };
 
   return (
     <div>
       <div>
-        {tema !== "@all" ? (
+        {!isAll ? (
           <div>
             <p className="text-sm text-muted-foreground mb-1">
               Tema pesquisado:
@@ -123,13 +147,38 @@ function RepertoriosContent() {
               </SelectContent>
             </Select>
 
+            {isAll && (
+              <Select
+                items={eixoSelectItems}
+                value={selectedEixo}
+                onValueChange={(value) =>
+                  setSelectedEixo(value as EixoTematico | "todos")
+                }
+              >
+                <SelectTrigger
+                  className="w-64"
+                  aria-label="Filtrar por eixo temático"
+                >
+                  <SelectValue placeholder="Filtrar por eixo temático" />
+                </SelectTrigger>
+                <SelectContent alignItemWithTrigger={false}>
+                  <SelectItem value="todos">Todos os eixos</SelectItem>
+                  {allEixos.map((eixo) => (
+                    <SelectItem key={eixo} value={eixo}>
+                      {eixo}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            )}
+
             {hasFilters && (
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={() => setSelectedType("todos")}
+                onClick={clearFilters}
                 className="text-red-500 hover:text-red-600 hover:bg-red-500/10"
-                aria-label="Remover filtro"
+                aria-label="Remover filtros"
               >
                 <X /> Limpar
               </Button>
@@ -166,17 +215,13 @@ function RepertoriosContent() {
         ) : filtered.length === 0 ? (
           <div className="col-span-full text-center py-12 space-y-3">
             <p className="text-foreground font-medium">
-              Nenhum repertório desse tipo entre os recomendados.
+              Nenhum repertório com esses filtros entre os recomendados.
             </p>
             <p className="text-sm text-muted-foreground">
-              Tente mudar o filtro ou removê-lo.
+              Tente mudar os filtros ou removê-los.
             </p>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => setSelectedType("todos")}
-            >
-              <X /> Remover filtro
+            <Button variant="outline" size="sm" onClick={clearFilters}>
+              <X /> Remover filtros
             </Button>
           </div>
         ) : (

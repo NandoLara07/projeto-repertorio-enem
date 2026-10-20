@@ -328,6 +328,28 @@ html.no-scrollbar-gutter {
   background-color: var(--primary);
 }
 
+/* With a bigger text size the slides get narrow and the carousel clips what
+   doesn't fit: trim the slide padding (in px, so it doesn't grow with the
+   zoom) and let a word that doesn't fit on its line break (`anywhere` also
+   lets flex items like the field chips shrink). The negative margin that
+   spaces the slides goes too, or it would hide the left edge. */
+.accessibility [data-slot="carousel-content"] > div {
+  margin-left: 0;
+}
+.accessibility [data-slot="carousel-item"] {
+  padding: 12px;
+  overflow-wrap: anywhere;
+}
+
+/* Page side padding and card padding stop growing with the zoom (min() keeps
+   the normal size at 100%), so zoomed text gets the width instead. */
+.accessibility main.px-6 {
+  padding-inline: min(1.5rem, 24px);
+}
+.accessibility [data-slot="card"] {
+  --card-spacing: min(1rem, 16px);
+}
+
 /* Cards: black with a solid white border; shadows don't show on black. */
 .accessibility [data-slot="card"] {
   background-color: var(--card);

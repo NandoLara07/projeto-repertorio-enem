@@ -34,7 +34,7 @@ export default function UsageExempleCard({
             <div className="min-w-0 flex-1">
               <CarouselContent>
                 <CarouselItem className="p-6 flex items-center">
-                  <div>
+                  <div className="min-w-0">
                     <h2 className="flex items-center gap-2 text-primary font-bold text-lg mb-3">
                       <PenLine className="h-5 w-5" />
                       Exemplo de {repertorio.bestFor} coringa
@@ -92,7 +92,7 @@ export default function UsageExempleCard({
                 </CarouselItem>
                 {repertorio.usageExample && (
                   <CarouselItem className="p-6">
-                    <div>
+                    <div className="min-w-0">
                       <h2 className="flex items-center gap-2 text-primary font-bold text-lg mb-3">
                         <PenLine className="h-5 w-5" />
                         Exemplo de uso real

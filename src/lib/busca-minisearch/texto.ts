@@ -23,7 +23,7 @@ const PALAVRAS_VAZIAS = new Set(
   proprio propria proprios proprias cada algum alguma alguns algumas
   nenhum nenhuma tanto tanta tantos tantas qualquer quaisquer tal tais demais ademais
   ja ainda so apenas bem mal aqui ali la ai hoje agora atualmente sempre nunca
-  jamais talvez sim nao tao meio forma formas grande grandes populacao
+  jamais talvez sim nao tao meio forma formas grande grandes populacao pessoa pessoas
   ser sou es somos sao era eram fui foi fomos foram seja sejam sera serao seria
   seriam sendo sido estar estou estamos estao estava estavam esteve estiveram
   estando ter tenho tem temos tinha tinham tive teve tiveram tera terao teria
@@ -139,7 +139,8 @@ function singularizar(palavra: string): string {
   if (palavra.length <= 4) return palavra;
   if (palavra.endsWith("ais")) return palavra.slice(0, -3) + "al"; // sociais → social
   if (/[eé]is$/.test(palavra)) return palavra.replace(/[eé]is$/, "el"); // papéis → papel
-  if (palavra.endsWith("ns")) return palavra.slice(0, -2) + "m"; // jovens → jovem
+  // jovens → jovem, comuns → comum ("trans" fica como está)
+  if (/[eu]ns$/.test(palavra)) return palavra.slice(0, -2) + "m";
   return palavra;
 }
 

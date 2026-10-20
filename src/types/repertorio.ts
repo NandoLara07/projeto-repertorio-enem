@@ -2,6 +2,7 @@ export type EixoTematico =
   | "Educação" // acesso, qualidade, evasão, tecnologia educacional, alfabetização
   | "Saúde" // saúde pública, saúde mental, prevenção, alimentação
   | "Meio ambiente" // mudanças climáticas, preservação, recursos naturais, sustentabilidade
+  | "Causa animal" // maus-tratos, abandono, adoção, bem-estar e direitos dos animais
   | "Tecnologia e inovação" // IA, redes sociais, privacidade, inclusão digital
   | "Direitos humanos e cidadania" // direitos fundamentais, participação social, democracia
   | "Desigualdade e inclusão" // pobreza, desigualdade social, deficiência, grupos vulneráveis

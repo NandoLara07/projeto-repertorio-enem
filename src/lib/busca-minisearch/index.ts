@@ -1,7 +1,7 @@
 import MiniSearch, { type Query } from "minisearch";
 import { RepertoriosData } from "@/db/repertorios";
 import type { Repertorio } from "@/types/repertorio";
-import { EQUIVALENTES, MAIS_AMPLOS } from "./sinonimos";
+import { EQUIVALENTES, GRUPOS, MAIS_AMPLOS } from "./sinonimos";
 import { normalizar, processar } from "./texto";
 
 export type Relevance = "muito-relevante" | "relevante" | "pouco-relevante";
@@ -172,15 +172,12 @@ function notaDaExpressao(
   if (junta > 0 || !aceitaParcial || termos.length === 1) return junta;
   const notas = termos.map((termo) => notaJunta(doc, [termo]));
   return (
-    (PESO_PARCIAL * notas.reduce((soma, nota) => soma + nota, 0)) /
-    notas.length
+    (PESO_PARCIAL * notas.reduce((soma, nota) => soma + nota, 0)) / notas.length
   );
 }
 
 function idf(quantos: number): number {
-  return Math.log(
-    1 + (documentos.length - quantos + 0.5) / (quantos + 0.5),
-  );
+  return Math.log(1 + (documentos.length - quantos + 0.5) / (quantos + 0.5));
 }
 const IDF_REFERENCIA = idf(documentos.length * FRACAO_ESPECIFICA);
 
@@ -463,6 +460,30 @@ const ORDEM: Record<Relevance, number> = {
   "pouco-relevante": 2,
 };
 
+const UM_SELO_ABAIXO: Record<Relevance, Relevance> = {
+  "muito-relevante": "relevante",
+  relevante: "pouco-relevante",
+  "pouco-relevante": "pouco-relevante",
+};
+
+const GRUPOS_TERMOS = GRUPOS.map((grupo) =>
+  grupo.map(termosDe).filter((termos) => termos.length > 0),
+);
+
+// Grupos sociais de que o tema fala (ver GRUPOS em sinonimos.ts).
+function gruposDoTema(tema: string): string[][][] {
+  const termos = new Set(processar(tema).map(({ termo }) => termo));
+  return GRUPOS_TERMOS.filter((grupo) =>
+    grupo.some((membro) => membro.every((termo) => termos.has(termo))),
+  );
+}
+
+function trataDoGrupo(doc: Documento, grupos: string[][][]): boolean {
+  return grupos.some((grupo) =>
+    grupo.some((membro) => notaJunta(doc, membro) > 0),
+  );
+}
+
 const EIXOS = new Map(
   RepertoriosData.flatMap((r) => r.eixoTematico).map((eixo) => [
     normalizar(eixo),
@@ -489,8 +510,17 @@ function buscarPorEixo(tema: string): RepertorioRecomendado[] | null {
 export function buscarRepertoriosMiniSearch(
   tema: string,
 ): RepertorioRecomendado[] {
+  // ===== Pra quando o usuário querer todos os repertórios =====
+  // if (tema.trim().toLowerCase() === "@all") {
+  //   return RepertoriosData.map((repertorio) => ({ id: repertorio.id }));
+  // }
+
+  // Se alguma hora eu quiser q seja ordenado por ordem alfabética
+
   if (tema.trim().toLowerCase() === "@all") {
-    return RepertoriosData.map((repertorio) => ({ id: repertorio.id }));
+    return [...RepertoriosData]
+      .sort((a, b) => a.title.localeCompare(b.title, "pt-BR")) // Isso aqui só pra retornar em ordem alfabetica, coisa minha mesmo
+      .map((repertorio) => ({ id: repertorio.id }));
   }
 
   const porEixo = buscarPorEixo(tema);
@@ -498,35 +528,44 @@ export function buscarRepertoriosMiniSearch(
 
   const conceitos = montarConceitos(tema);
   if (conceitos.length === 0) return [];
+  const grupos = gruposDoTema(tema);
 
-  return miniSearch
-    .search(montarConsulta(conceitos))
-    .map((resultado) => {
-      const doc = documentosPorId.get(resultado.id)!;
-      const cobertura = calcularCobertura(doc, conceitos);
-      const central = trataDoTema(doc, conceitos);
-      return {
-        id: doc.id,
-        cobertura,
-        central,
-        relevance: relevancia(
+  return (
+    miniSearch
+      .search(montarConsulta(conceitos))
+      .map((resultado) => {
+        const doc = documentosPorId.get(resultado.id)!;
+        const cobertura = calcularCobertura(doc, conceitos);
+        const central = trataDoTema(doc, conceitos);
+        const grupo = grupos.length === 0 || trataDoGrupo(doc, grupos);
+        const selo = relevancia(
           cobertura,
           central,
           trataDeIdeiaRara(doc, conceitos),
-        ),
-        // O MiniSearch multiplica a nota pela quantidade de termos encontrados.
-        // Aqui esse papel fica com a cobertura, que não conta sinônimo como
-        // ideia nova nem trata moldura como assunto.
-        nota: (resultado.score / resultado.queryTerms.length) * cobertura,
-      };
-    })
-    .filter(({ cobertura }) => cobertura >= COBERTURA_MINIMA)
-    // No mesmo selo, quem trata do tema vem antes de quem só também serve.
-    .sort(
-      (a, b) =>
-        ORDEM[a.relevance] - ORDEM[b.relevance] ||
-        Number(b.central) - Number(a.central) ||
-        b.nota - a.nota,
-    )
-    .map(({ id, relevance }) => ({ id, relevance }));
+        );
+        return {
+          id: doc.id,
+          cobertura,
+          central,
+          grupo,
+          // O tema fala de um grupo social e o repertório não trata dele: desce um selo.
+          relevance: grupo ? selo : UM_SELO_ABAIXO[selo],
+          // O MiniSearch multiplica a nota pela quantidade de termos encontrados.
+          // Aqui esse papel fica com a cobertura, que não conta sinônimo como
+          // ideia nova nem trata moldura como assunto.
+          nota: (resultado.score / resultado.queryTerms.length) * cobertura,
+        };
+      })
+      .filter(({ cobertura }) => cobertura >= COBERTURA_MINIMA)
+      // No mesmo selo, vem antes quem trata do grupo social do tema e, depois,
+      // quem trata do tema como assunto principal.
+      .sort(
+        (a, b) =>
+          ORDEM[a.relevance] - ORDEM[b.relevance] ||
+          Number(b.grupo) - Number(a.grupo) ||
+          Number(b.central) - Number(a.central) ||
+          b.nota - a.nota,
+      )
+      .map(({ id, relevance }) => ({ id, relevance }))
+  );
 }

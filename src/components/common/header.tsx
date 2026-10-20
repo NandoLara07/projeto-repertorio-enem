@@ -6,7 +6,7 @@ export const Header = () => {
   return (
     <header
       style={{ viewTransitionName: "site-header" }}
-      className="fixed top-0 left-0 right-0 z-50 flex h-(--header-height) w-full items-center justify-between border-b border-border bg-background px-[16px]"
+      className="fixed top-0 left-0 right-0 z-50 flex h-(--header-height) w-full items-center justify-between border-b border-border bg-background px-4"
     >
       <Link
         href="/"
@@ -16,9 +16,7 @@ export const Header = () => {
         <svg
           viewBox="0 0 320 360"
           aria-hidden="true"
-          // max-h in px: with a bigger text size the logo stays put and leaves
-          // room for the zoom buttons on narrow screens.
-          className="h-full max-h-[56px] aspect-square text-[#101D17] dark:text-white accessibility:text-white"
+          className="h-full max-h-14 aspect-square text-[#101D17] dark:text-white accessibility:text-white"
         >
           <path
             fill="currentColor"
@@ -28,9 +26,7 @@ export const Header = () => {
         </svg>
       </Link>
 
-      {/* Padding and gaps in px (same as 1rem / 0.25rem at normal size) so a
-          bigger text size doesn't push the buttons off narrow screens. */}
-      <div className="flex items-center gap-[4px]">
+      <div className="flex items-center gap-1">
         <AccessibilityControls />
         <ThemeSwitcher />
       </div>
