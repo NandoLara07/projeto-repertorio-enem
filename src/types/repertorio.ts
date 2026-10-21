@@ -28,7 +28,8 @@ export interface Repertorio {
     | "dado"
     | "evento"
     | "movimento"
-    | "conceito";
+    | "conceito"
+    | "canal";
 
   category: string; // Violência, Infância, Direitos, Cidadania, Educação
 
