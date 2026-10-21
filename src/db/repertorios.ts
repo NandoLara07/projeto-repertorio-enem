@@ -3299,6 +3299,7 @@ export const RepertoriosData: Repertorio[] = [
       "machosfera",
       "manosfera",
       "misoginia",
+      "macho",
       "misoginia online",
       "masculinidade",
       "masculinidade tóxica",
